@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <!-- Banner View -->
+    <ImageView
+        android:scaleType="centerCrop"
+        tools:background="@mipmap/ic_launcher"
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="160dp"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- TITLE VIEW -->
+        <TextView
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/title"
+            android:padding="2dp"
+            tools:text="Title"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- DURATION VIEW -->
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:padding="2dp"
+                android:id="@+id/duration"
+                android:gravity="left"
+                tools:text="duration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <!-- RATING VIEW -->
+            <TextView
+                android:layout_marginRight="3dp"
+                android:padding="2dp"
+                android:id="@+id/rating"
+                android:gravity="right"
+                tools:text="rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+
+
+
+        </LinearLayout>
+
+        <!-- SINOPSE TEXT VIEW -->
+        <TextView
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:padding="3dp"
+            android:id="@+id/sinopse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "@string/sinopse"
+            android:gravity="left"
+            />
+
+
+        <TextView
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:gravity="clip_horizontal"
+            tools:text="Resumo do filme pode ser gashdbsahbdhsabdhsadsabdsabdsadbsadbsajdsabdbsajhdbsahbdhsabdbsajhbdhjsabdbsadbsahjdbsabdbsadiagnet vai saber oq esta acontecendo na real é bem estranho do esse acontecimento linear."
+            android:id="@+id/text"
+            android:padding="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="marquee"
+            />
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

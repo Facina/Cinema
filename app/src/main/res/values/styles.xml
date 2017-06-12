@@ -1,0 +1,124 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+    <!-- Style for a tab that displays a category name -->
+    <style name="CategoryTab" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">#A8A19E</item>
+        <item name="tabSelectedTextColor">#A8A19E</item>
+        <item name="tabTextAppearance">@style/CategoryTabTextAppearance</item>
+    </style>
+
+    <!-- Text appearance style for a category tab -->
+    <style name="CategoryTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">#000000</item>
+    </style>
+
+
+    <!-- Button Style -->
+    <style name="ButtonStyle">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:radius">20dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginLeft">100dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginRight">100dp</item>
+
+    </style>
+
+
+    <!-- Titles Style -->
+    <style name="Title">
+
+        <item name="android:layout_width">
+            match_parent
+        </item>
+
+        <item name="android:layout_height">
+            wrap_content
+        </item>
+
+        <item name="android:padding">
+            20dp
+        </item>
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+        <item name="android:textAllCaps">
+            true
+        </item>
+
+        <item name="android:gravity">
+            center
+        </item>
+
+        <item name="android:background">
+            @android:color/transparent
+        </item>
+
+
+
+    </style>
+
+    <!-- Header Style -->
+    <style name="Header">
+
+        <item name="android:layout_width">
+            match_parent
+        </item>
+
+        <item name="android:layout_height">
+            wrap_content
+        </item>
+
+        <item name="android:padding">
+            8dp
+        </item>
+
+        <item name="android:textSize">
+            16sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+        <item name="android:textAllCaps">
+            false
+        </item>
+
+        <item name="android:gravity">
+            center
+        </item>
+
+        <item name="android:background">
+            @android:color/transparent
+        </item>
+
+
+
+    </style>
+
+
+
+
+</resources>

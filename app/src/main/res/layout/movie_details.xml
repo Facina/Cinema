@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <!-- COVER IMAGE VIEW-->
+        <ImageView
+            android:id="@+id/movie_image"
+            android:layout_marginTop="10dp"
+            tools:background="@mipmap/ic_launcher"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="150dp"
+            android:layout_height="225dp" />
+
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- TITLE TEXT VIEW -->
+            <TextView
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:text="Title :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:gravity="right"
+                android:id="@+id/movie_title"
+                android:layout_marginLeft="6dp"
+                tools:text = "Wonder Woman"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- TITLE TEXT VIEW -->
+            <TextView
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:text="Type :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:gravity="right"
+                android:id="@+id/movie_type"
+                android:layout_marginLeft="6dp"
+                tools:text = "adventure"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Main actor -->
+            <TextView
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:text="Star :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:gravity="right"
+                android:id="@+id/movie_main"
+                android:layout_marginLeft="6dp"
+                tools:text = "Gal Gabot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <!-- Director -->
+        <TextView
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:text="Directed by :"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="right"
+            android:id="@+id/movie_director"
+            android:layout_marginLeft="6dp"
+            tools:text = "Wonder Woman"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <!-- Rating Text View -->
+        <TextView
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:text="Rating :"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="right"
+            android:id="@+id/movie_rating"
+            android:layout_marginLeft="6dp"
+            tools:text = "8/10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <!-- Duration Text View -->
+            <TextView
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:text="Duration :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:gravity="right"
+                android:id="@+id/movie_duration"
+                android:layout_marginLeft="6dp"
+                tools:text = "141 min"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <!-- Realease Text View -->
+            <TextView
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:text="Release date :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:gravity="right"
+                android:id="@+id/movie_release"
+                android:layout_marginLeft="6dp"
+                tools:text = "Wonder Woman"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <!-- Thsraller Text View -->
+            <TextView
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:text="Trailer :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:gravity="right"
+                android:id="@+id/movie_trailer"
+                android:layout_marginLeft="6dp"
+                tools:text = "click me"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+        <TextView
+            tools:text="There are two (2) major classes used layout the text in DocumentView. These classes are similar to Android's built in StaticLayout. - DocumentLayout - Optimized for simple plain text - SpannedDocumentLayout - Optimized for formatted text with Spannables
+
+The Overview section will describe the pros and cons in more detail."
+            android:layout_margin="10dp"
+            android:gravity="left"
+            android:id="@+id/movie_sinopse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</ScrollView>
