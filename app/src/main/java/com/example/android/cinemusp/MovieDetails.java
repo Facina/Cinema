@@ -10,10 +10,19 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static android.R.attr.type;
@@ -24,6 +33,13 @@ import static java.security.AccessController.getContext;
  */
 
 public class MovieDetails extends AppCompatActivity{
+
+    String adress = "https://web-hosting-test.000webhostapp.com/login.php";
+    InputStream data = null;
+    String line = null;
+    String result = null;
+    ArrayList<Filme> listaFilme = new ArrayList<Filme>();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -132,6 +148,64 @@ public class MovieDetails extends AppCompatActivity{
 
 
     }
+
+
+    public void getData(){
+        try {
+            URL url = new URL(adress);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            data = new BufferedInputStream(conn.getInputStream());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try{
+            BufferedReader br = new BufferedReader(new InputStreamReader(data));
+            StringBuilder sb = new StringBuilder();
+            while((line = br.readLine()) != null){
+                sb.append(line+"\n");
+
+            }
+            data.close();
+            result=sb.toString();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //Parsin json data
+
+        try{
+
+            JSONArray  js = new JSONArray(result);
+            JSONObject filme = null;
+
+            for(int i=0; i  < js.length();i++){
+                filme = js.getJSONObject(i);
+                Filme teste = new Filme();
+                teste.setNome(filme.getString("nomeFilme"));
+                teste.setClassificacao(filme.getString("classificacao"));
+                teste.setSinopse(filme.getString("sinopse"));
+                teste.setImgLink(filme.getString("imgLink"));
+                teste.setDuracao(filme.getInt("duracao"));
+
+
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+
 
     public static Object deserialize(String fileName) throws IOException,
             ClassNotFoundException {
