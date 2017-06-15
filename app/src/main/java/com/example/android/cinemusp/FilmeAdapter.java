@@ -43,7 +43,8 @@ public class FilmeAdapter extends ArrayAdapter<Filme> {
      *
      */
     public FilmeAdapter(Context context, ArrayList<Filme> movies) {
-        super(context, 0, movies);
+
+            super(context, 0, movies);
 
     }
 
@@ -78,7 +79,7 @@ public class FilmeAdapter extends ArrayAdapter<Filme> {
         TextView durationTextView = (TextView) listItemView.findViewById(R.id.duration);
         // Get the duration from the currentMovie object and set this text on
         // the duration TextView.
-        durationTextView.setText(""+currentMovie.getDuracao());
+        durationTextView.setText(""+currentMovie.getDuracao()+"min");
 
         // Find the TextView in the movie_item.xml layout with the ID duration.
         TextView ratingTextView = (TextView) listItemView.findViewById(R.id.rating);
@@ -94,7 +95,6 @@ public class FilmeAdapter extends ArrayAdapter<Filme> {
 
 
 
-        // Return the whole list item layout (containing 2 TextViews) so that it can be shown in
         // the ListView.
         return listItemView;
     }

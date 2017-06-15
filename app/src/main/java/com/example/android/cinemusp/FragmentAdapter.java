@@ -49,7 +49,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return new HomeFragment();
         } else if (position == 1) {
-            return new MoviesFragment();
+            return new FilmeFragment();
         } else  {
             return new SearchFragment();
         }

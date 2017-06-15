@@ -35,13 +35,13 @@
             <TextView
                 android:textSize="15sp"
                 android:textColor="#000000"
-                android:text="Title :"
+                android:text="Titulo :"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:gravity="right"
-                android:id="@+id/movie_title"
+                android:id="@+id/filme_titulo"
                 android:layout_marginLeft="6dp"
                 tools:text = "Wonder Woman"
                 android:layout_width="match_parent"
@@ -58,17 +58,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- TITLE TEXT VIEW -->
+            <!-- CLASSIFICACAO TEXT VIEW -->
             <TextView
                 android:textSize="15sp"
                 android:textColor="#000000"
-                android:text="Type :"
+                android:text="Classificação :"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:gravity="right"
-                android:id="@+id/movie_type"
+                android:id="@+id/filme_classificacao"
                 android:layout_marginLeft="6dp"
                 tools:text = "adventure"
                 android:layout_width="match_parent"
@@ -78,88 +78,9 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- Main actor -->
-            <TextView
-                android:textSize="15sp"
-                android:textColor="#000000"
-                android:text="Star :"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:gravity="right"
-                android:id="@+id/movie_main"
-                android:layout_marginLeft="6dp"
-                tools:text = "Gal Gabot"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
 
 
-        </LinearLayout>
 
-
-        <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-            <!-- Director -->
-        <TextView
-            android:textSize="15sp"
-            android:textColor="#000000"
-            android:text="Directed by :"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:gravity="right"
-            android:id="@+id/movie_director"
-            android:layout_marginLeft="6dp"
-            tools:text = "Wonder Woman"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-
-    </LinearLayout>
-
-        <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <!-- Rating Text View -->
-        <TextView
-            android:textSize="15sp"
-            android:textColor="#000000"
-            android:text="Rating :"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:gravity="right"
-            android:id="@+id/movie_rating"
-            android:layout_marginLeft="6dp"
-            tools:text = "8/10"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-
-    </LinearLayout>
 
         <LinearLayout
             android:layout_marginLeft="10dp"
@@ -174,13 +95,13 @@
             <TextView
                 android:textSize="15sp"
                 android:textColor="#000000"
-                android:text="Duration :"
+                android:text="Duração :"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:gravity="right"
-                android:id="@+id/movie_duration"
+                android:id="@+id/filme_duracao"
                 android:layout_marginLeft="6dp"
                 tools:text = "141 min"
                 android:layout_width="match_parent"
@@ -202,13 +123,13 @@
             <TextView
                 android:textSize="15sp"
                 android:textColor="#000000"
-                android:text="Release date :"
+                android:text="Data de estréia :"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:gravity="right"
-                android:id="@+id/movie_release"
+                android:id="@+id/filme_data_estreia"
                 android:layout_marginLeft="6dp"
                 tools:text = "Wonder Woman"
                 android:layout_width="match_parent"
@@ -226,17 +147,17 @@
             android:layout_height="wrap_content">
 
 
-            <!-- Thsraller Text View -->
+            <!-- Data de Saida Text View -->
             <TextView
                 android:textSize="15sp"
                 android:textColor="#000000"
-                android:text="Trailer :"
+                android:text="Data de saída :"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:gravity="right"
-                android:id="@+id/movie_trailer"
+                android:id="@+id/filme_data_saida"
                 android:layout_marginLeft="6dp"
                 tools:text = "click me"
                 android:layout_width="match_parent"
@@ -250,7 +171,7 @@
 The Overview section will describe the pros and cons in more detail."
             android:layout_margin="10dp"
             android:gravity="left"
-            android:id="@+id/movie_sinopse"
+            android:id="@+id/filme_sinopse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
