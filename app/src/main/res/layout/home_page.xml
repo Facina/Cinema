@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     xmlns:tools="http://schemas.android.com/tools">
 
 
 
     <ImageView
-        android:background="@mipmap/ic_launcher_round"
         android:layout_marginTop="10dp"
-        tools:background="@mipmap/ic_launcher_round"
+        android:src="@drawable/cinema_logo"
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:layout_weight="7"/>
+        android:layout_weight="9"/>
 
 
     <TextView
@@ -21,27 +21,48 @@
         android:textStyle="bold"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="NEXT SESSION"
+        android:text="Proxima Sessão"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+
+        android:layout_margin="10dp">
     <ImageView
         android:scaleType="centerCrop"
         android:id="@+id/home_session"
+
+
         tools:background="@mipmap/ic_launcher"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="5"/>
+        <ImageView
+            android:scaleType="fitXY"
+            android:src="@drawable/curtina"
+
+            tools:background="@mipmap/ic_launcher"
+
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"/>
+    </RelativeLayout>
+
+
 
     <TextView
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="7dp"
         android:textColor="@android:color/holo_blue_light"
 
-        android:text="for support click here"
+        android:text="contate-nos"
         android:id="@+id/suppor_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

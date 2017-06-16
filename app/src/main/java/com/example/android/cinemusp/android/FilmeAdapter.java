@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.cinemusp;
+package com.example.android.cinemusp.android;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -23,6 +23,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.cinemusp.R;
+import com.example.android.cinemusp.modelo.Filme;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

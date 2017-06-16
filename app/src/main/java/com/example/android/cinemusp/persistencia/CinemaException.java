@@ -1,4 +1,4 @@
-package com.example.android.cinemusp;
+package com.example.android.cinemusp.persistencia;
 
 /**
  *

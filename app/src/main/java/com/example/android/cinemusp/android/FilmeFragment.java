@@ -1,10 +1,8 @@
 
-package com.example.android.cinemusp;
+package com.example.android.cinemusp.android;
 import java.text.SimpleDateFormat;
 
-import java.sql.Date;
 import android.content.Intent;
-import android.content.res.Configuration;
 
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -16,10 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.android.cinemusp.R;
+import com.example.android.cinemusp.modelo.Filme;
 import com.kosalgeek.genasync12.AsyncResponse;
 import com.kosalgeek.genasync12.EachExceptionsHandler;
 import com.kosalgeek.genasync12.PostResponseAsyncTask;
@@ -27,18 +26,14 @@ import com.kosalgeek.genasync12.PostResponseAsyncTask;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
-import java.net.URL;
 import java.util.ArrayList;
+import com.example.android.cinemusp.modelo.Filme;
 
 
 
@@ -50,10 +45,8 @@ public class FilmeFragment extends Fragment {
     View rootView;
 
     String adress = "https://web-hosting-test.000webhostapp.com/conn_cartaz.php";
-    InputStream data = null;
-    String line = null;
-    String result = null;
-    ArrayList<Filme> listaFilme = new ArrayList<Filme>();
+    final ArrayList<Filme> listaFilme = new ArrayList<Filme>();
+
 
 
 
@@ -66,44 +59,47 @@ public class FilmeFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            getActivity().setContentView(R.layout.movie_list);
-
-        } else {
-            getActivity().setContentView(R.layout.movie_list);
-        }
-    }
 
     public FilmeFragment() {
 
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("not null",1);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Filme movie = new Filme();
         rootView = inflater.inflate(R.layout.movie_list, container, false);
 
+        final ArrayList<Filme> listaFilme = new ArrayList<Filme>();
 
+
+
+
+        Log.e("tamanho","size = "+listaFilme.size());
         // MovieList movies = new MovieList();
         // final ArrayList<Movie> list = movies.getMovies();
 
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
+       // StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
 
-        // MovieAdapter adapter = new MovieAdapter(getActivity(), list);
+
         final FilmeAdapter adapter = new FilmeAdapter(getActivity(), listaFilme);
 
-        // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
-        // There should be a {@link ListView} with the view ID called list, which is declared in the
-        // movie_list.xml layout file.
         final ListView listView = (ListView) rootView.findViewById(R.id.list);
 
 
-        // Create a list of movies
+        listView.setAdapter(adapter);
+
+
+
+        //Create a list of movies
         PostResponseAsyncTask task = new PostResponseAsyncTask(getActivity(), false, new AsyncResponse() {
 
             @Override
@@ -143,13 +139,13 @@ public class FilmeFragment extends Fragment {
 
 
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "Filme não encontrado :(", Toast.LENGTH_LONG).show();
-
+                    //Toast.makeText(getContext(), "Filme não encontrado :(", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
 
             }
         });
+
         task.execute(adress);
         task.setEachExceptionsHandler(new EachExceptionsHandler() {
             @Override
@@ -183,12 +179,13 @@ public class FilmeFragment extends Fragment {
         // {@link ListView} will display list items for each {@link Word} in the list.
 
 
+        final ArrayList<Filme> finalListaFilme = listaFilme;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
 
-                Filme movie = listaFilme.get(position);
+                Filme movie = finalListaFilme.get(position);
 
 
                 Intent filmeIntent = new Intent(getActivity(), MovieDetails.class);

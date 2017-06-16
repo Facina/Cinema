@@ -19,7 +19,7 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical"
-    tools:context="com.example.android.cinemusp.MainActivity">
+    tools:context="com.example.android.cinemusp.android.MainActivity">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"

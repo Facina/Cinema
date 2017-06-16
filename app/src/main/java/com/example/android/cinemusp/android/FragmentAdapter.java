@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.cinemusp;
+package com.example.android.cinemusp.android;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.android.cinemusp.R;
 
 /**
  * {@link FragmentAdapter} is a {@link FragmentPagerAdapter} that can provide the layout for

@@ -1,15 +1,32 @@
-package com.example.android.cinemusp;
+package com.example.android.cinemusp.modelo;
+
+import android.app.Activity;
+import android.util.Log;
+import android.widget.ListView;
+
+import com.example.android.cinemusp.R;
+import com.example.android.cinemusp.android.FilmeAdapter;
+import com.kosalgeek.genasync12.PostResponseAsyncTask;
+import com.example.android.cinemusp.persistencia.CinemaException;
+import com.kosalgeek.genasync12.AsyncResponse;
+
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
+import static android.app.PendingIntent.getActivities;
+import static android.app.PendingIntent.getActivity;
 
 
 /**
  *
  * @author marcelosuckowdebarrosrodrigues
  */
-public class Filme {
+public class Filme extends Activity{
 
     private String nome, sinopse, imgLink, classificacao;
     private Date dataEstreia, dataSaida;
@@ -234,25 +251,7 @@ public class Filme {
             throw new CinemaException("Data de " + id + " inválida");
         }
     }
-    /*
-    public static ArrayList<Filme> pesquisarFilmes(String texto, int selectedIndex) throws CinemaException {
-        ControleFilmes cf = new ControleFilmes();
-        ArrayList<Filme> lista = null;
 
-        if (texto.equals("") && selectedIndex == 0) {
-            lista = cf.pesquisarFilmes(null, 0); //pesquisar todos os filmes
-        } else if (selectedIndex == 0) {
-            lista = cf.pesquisarFilmes(texto, 1); //pesquisar por nome
-        } else if(texto.equals("")){
-            lista = cf.pesquisarFilmes(null, 2); //pesquisar todos filmes em cartaz
-        }else{
-            lista = cf.pesquisarFilmes(texto, 3); //pesquisar filmes em cartaz por nome
-        }
-
-
-        return lista;
-
-    }*/
 
     /**
      * @return the idFilme
@@ -267,4 +266,9 @@ public class Filme {
     public void setIdFilme(int idFilme) {
         this.idFilme = idFilme;
     }
+
+
+
+
+
 }
