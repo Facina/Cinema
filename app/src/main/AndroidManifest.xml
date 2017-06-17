@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.cinemusp">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <application
 
+    <application
         android:allowBackup="true"
+        android:configChanges="keyboardHidden|orientation|screenSize"
         android:icon="@drawable/app_icon"
         android:label="CinemUSP"
         android:roundIcon="@drawable/app_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:configChanges="keyboardHidden|orientation|screenSize"
-
-        >
-        <activity android:name=".android.MainActivity"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".android.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-
-                <action android:name="android.intent.action.MAIN"
-                    />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".android.MovieDetails"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".android.MainActivity">
-
-        </activity>
+        <activity
+            android:name=".android.MovieDetails"
+            android:parentActivityName=".android.MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".android.SessaoDetails"
+            android:parentActivityName=".android.MainActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

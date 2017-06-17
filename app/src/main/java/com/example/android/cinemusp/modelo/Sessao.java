@@ -12,6 +12,15 @@ import java.text.SimpleDateFormat;
 
 
 public class Sessao {
+    public String getHorarioString() {
+        return horarioString;
+    }
+
+    public void setHorarioString(String horarioString) {
+        this.horarioString = horarioString;
+    }
+
+    private String horarioString;
 
         private int idSessao;
 	private Filme filme;
@@ -32,6 +41,7 @@ public class Sessao {
         
 	public Sessao(Filme filme, Sala sala,Date data ,Time horario, Preco precos, boolean tresD,boolean legendado, boolean imax, boolean quatroK) {
 		this.filme = filme;
+
 		this.sala = new Sala(sala.getNumeroSala(), sala.getNFileiras(), sala.getMaxAssentos(), sala.getMapa());
 		this.horario = horario;
                 this.data = data;

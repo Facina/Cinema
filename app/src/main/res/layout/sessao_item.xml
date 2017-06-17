@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/fundo_grid"
+    android:background="@drawable/add_button"
+
+
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <TextView
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="5dp"
+        android:id="@+id/horario_item"
+        tools:text="horario"
+        android:textSize="16sp"
+        android:gravity="center"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/grid_root_item">
+    <TextView
+        android:textColor="#FFFFFF"
+        android:id="@+id/legendado"
+        tools:text="legendado"
+        android:gravity="center"
+        android:textSize="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+    <TextView
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/tresD"
+        android:gravity="center"
+        tools:text="3d"
+        android:textSize="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+</LinearLayout>
+
+
+
+
+</LinearLayout>

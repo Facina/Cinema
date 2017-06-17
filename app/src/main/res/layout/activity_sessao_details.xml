@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.cinemusp.android.SessaoDetails">
+
+    <TextView
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_margin="6dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detalhes da Sessão"/>
+
+    <!-- Horario da sessao bloco -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Horario da sessão:"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/sala_horario"
+            android:gravity="right"
+            tools:text="10:20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <!-- Audio -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Gênero da sessão:"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/sala_tipo"
+            android:gravity="right"
+            tools:text="legendado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <!-- Classificacao -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Classificação indicada:"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/sala_classificacao"
+            android:gravity="right"
+            tools:text="18anos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="Número de ingressos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/numero_decrement"
+            android:layout_margin="10dp"
+            android:background="@drawable/my_button"
+            android:text="-"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/numero"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            tools:text="numero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/numero_increment"
+            android:layout_margin="10dp"
+            android:background="@drawable/add_button"
+            android:text="+"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="Número de meias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/meia_decrement"
+            android:layout_margin="10dp"
+            android:background="@drawable/my_button"
+            android:text="-"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/meias"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            tools:text="meias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/meia_icrement"
+            android:layout_margin="10dp"
+            android:background="@drawable/add_button"
+            android:text="+"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="4dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="left"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginLeft="4dp"
+            android:text="Preço total:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <TextView
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_marginRight="4dp"
+            android:id="@+id/sessao_preco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            tools:text="10 rs"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="7dp"
+        android:text="Prosseguir"
+        android:background="@drawable/add_button"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
