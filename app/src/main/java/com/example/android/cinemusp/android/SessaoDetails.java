@@ -1,5 +1,6 @@
 package com.example.android.cinemusp.android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.cinemusp.R;
+import com.example.android.cinemusp.modelo.Filme;
 
 public class SessaoDetails extends AppCompatActivity {
 
@@ -45,14 +47,32 @@ public class SessaoDetails extends AppCompatActivity {
         Button numDec = (Button) findViewById(R.id.numero_decrement);
         Button meiaIcr = (Button) findViewById(R.id.meia_icrement);
         Button meiaDec = (Button) findViewById(R.id.meia_decrement);
+        Button prosseguir = (Button) findViewById(R.id.prosseguir);
+
 
         final TextView numIngr = (TextView) findViewById(R.id.numero);
         final TextView numMeia = (TextView) findViewById(R.id.meias);
+
+
 
         numIngr.setText(""+numIngresso);
         numMeia.setText(""+numMeias);
 
         precoRefresh();
+
+        prosseguir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Intent filmeIntent = new Intent(SessaoDetails.this, SalaChooser.class);
+
+
+                startActivity(filmeIntent);
+
+            }
+        });
 
         numIcr.setOnClickListener(new View.OnClickListener() {
             @Override

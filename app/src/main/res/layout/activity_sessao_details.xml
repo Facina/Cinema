@@ -207,6 +207,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/prosseguir"
         android:layout_marginTop="7dp"
         android:text="Prosseguir"
         android:background="@drawable/add_button"

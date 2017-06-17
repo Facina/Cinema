@@ -26,10 +26,14 @@
         <activity
             android:name=".android.MovieDetails"
             android:parentActivityName=".android.MainActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".android.SessaoDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".android.SessaoDetails"
             android:parentActivityName=".android.MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".android.SalaChooser"
+            android:parentActivityName=".android.MainActivity"
+            android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>
