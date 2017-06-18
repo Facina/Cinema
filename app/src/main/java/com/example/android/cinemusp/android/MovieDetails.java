@@ -250,7 +250,7 @@ public class MovieDetails extends AppCompatActivity{
 
                                     Intent sessaoIntent = new Intent(MovieDetails.this, SessaoDetails.class);
                                     sessaoIntent.putExtra("idSessao", sessaoClicada.getIdSessao());
-
+                                    sessaoIntent.putExtra("classificacao",currMovie.getClassificacao());
                                     startActivity(sessaoIntent);
                                 }
 

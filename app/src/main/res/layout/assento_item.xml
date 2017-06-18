@@ -10,14 +10,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 <ImageView
-    android:background="@drawable/assento_padrao_verde"
+
     android:layout_gravity="center"
     android:id="@+id/assento"
     android:layout_margin="2dp"
     tools:background="@drawable/assento_padrao_verde"
     android:layout_width="35dp"
     android:layout_height="35dp" />
-
 
 
 </LinearLayout>

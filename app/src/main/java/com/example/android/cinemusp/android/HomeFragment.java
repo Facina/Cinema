@@ -17,11 +17,13 @@ import android.widget.Toast;
 
 import com.example.android.cinemusp.R;
 import com.example.android.cinemusp.modelo.Filme;
+import com.example.android.cinemusp.persistencia.CinemaException;
 import com.kosalgeek.genasync12.AsyncResponse;
 import com.kosalgeek.genasync12.PostResponseAsyncTask;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -33,7 +35,7 @@ import static android.R.attr.id;
  */
 public class HomeFragment extends Fragment {
 
-    String adress = "https://web-hosting-test.000webhostapp.com/test.php";
+    String adress = "https://web-hosting-test.000webhostapp.com/pesquisa_proxima_sessao.php";
 
     public HomeFragment() {
         // Required empty public constructor
@@ -59,13 +61,13 @@ public class HomeFragment extends Fragment {
             public void processFinish(String s) {
 
                 try {
-                    Log.e("getData", "parsing");
-                    JSONArray js = new JSONArray(s);
+                    Log.e("getData", "parsing adress = "+adress);
+                    JSONObject js = new JSONObject(s);
                     JSONObject filme = null;
 
-                    for (int i = 0; i < js.length(); i++) {
-                        filme = js.getJSONObject(i);
-                        Toast.makeText(getActivity(), "" + i, Toast.LENGTH_LONG);
+
+                        filme = js;
+                        Toast.makeText(getActivity(), "" + 0, Toast.LENGTH_LONG);
                         movie.setNome(filme.getString("nomeFilme"));
                         movie.setClassificacao(filme.getString("classificacao"));
                         movie.setSinopse(filme.getString("sinopse"));
@@ -85,18 +87,19 @@ public class HomeFragment extends Fragment {
                         }
 
 
-                    }
-                    Log.e("getData", "parsed");
+                    } catch (CinemaException e1) {
+                    e1.printStackTrace();
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+                Log.e("getData", "parsed");
 
                     Picasso.with(context).load(movie.getImgLink()).into(session);
 
 
-                } catch (Exception e) {
-                    //Toast.makeText(getContext(), "Filme não encontrado :(", Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
                 }
 
-            }
+
         });
 
         task.execute(adress);

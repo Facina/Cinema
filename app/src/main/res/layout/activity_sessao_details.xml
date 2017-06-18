@@ -10,7 +10,7 @@
     <TextView
         android:textColor="#000000"
         android:textSize="16sp"
-        android:layout_margin="6dp"
+        android:layout_margin="20dp"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         <TextView
             android:layout_marginLeft="4dp"
             android:gravity="left"
-            android:text="Horario da sessão:"
+            android:text="Horario da sessão :"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
@@ -50,7 +50,7 @@
         <TextView
             android:layout_marginLeft="4dp"
             android:gravity="left"
-            android:text="Gênero da sessão:"
+            android:text="Gênero da sessão :"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
@@ -75,7 +75,7 @@
         <TextView
             android:layout_marginLeft="4dp"
             android:gravity="left"
-            android:text="Classificação indicada:"
+            android:text="Classificação indicada :"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
@@ -91,128 +91,247 @@
 
     </LinearLayout>
 
-    <TextView
-        android:textSize="16sp"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:text="Número de ingressos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+    <!-- 3D -->
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/numero_decrement"
-            android:layout_margin="10dp"
-            android:background="@drawable/my_button"
-            android:text="-"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/numero"
-            android:layout_margin="10dp"
-            android:textSize="18sp"
-            android:textColor="#000000"
-            android:gravity="center"
-            tools:text="numero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/numero_increment"
-            android:layout_margin="10dp"
-            android:background="@drawable/add_button"
-            android:text="+"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"/>
-
-
-    </LinearLayout>
-
-    <TextView
-        android:textSize="16sp"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:text="Número de meias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/meia_decrement"
-            android:layout_margin="10dp"
-            android:background="@drawable/my_button"
-            android:text="-"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/meias"
-            android:layout_margin="10dp"
-            android:textSize="18sp"
-            android:textColor="#000000"
-            android:gravity="center"
-            tools:text="meias"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/meia_icrement"
-            android:layout_margin="10dp"
-            android:background="@drawable/add_button"
-            android:text="+"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_margin="4dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:gravity="left"
-            android:textColor="#000000"
-            android:textSize="16sp"
             android:layout_marginLeft="4dp"
-            android:text="Preço total:"
+            android:gravity="left"
+            android:text="3D :"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
-            android:textSize="16sp"
-            android:textColor="#000000"
             android:layout_marginRight="4dp"
-            android:id="@+id/sessao_preco"
+            android:id="@+id/sala_3d"
+            android:gravity="right"
+            tools:text="sim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            tools:text="10 rs"
             android:layout_weight="1"/>
+
+
     </LinearLayout>
+    <!-- Imax -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Imax :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/sala_imax"
+            android:gravity="right"
+            tools:text="nao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+    <!-- 4K -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="4K :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/sala_4k"
+            android:gravity="right"
+            tools:text="nao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+<!-- Preco detalhes -->
+
+    <TextView
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preços"/>
+
+    <!-- Preco padrao -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Assento padrão :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/assento_padrao"
+            android:gravity="right"
+            tools:text="rs10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <!-- Preco reclinavel -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Assento reclinável :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/assento_reclinavel"
+            android:gravity="right"
+            tools:text="legendado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <!-- Preco cadeirante -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Assento cadeirante :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/assento_cadeirante"
+            android:gravity="right"
+            tools:text="18anos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <!-- preco casal -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Assento casal :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/assento_casal"
+            android:gravity="right"
+            tools:text="sim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+    <!-- preco obeso -->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Assento obeso :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/assento_obeso"
+            android:gravity="right"
+            tools:text="nao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+    <!-- Preco movel-->
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:gravity="left"
+            android:text="Assento movel :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginRight="4dp"
+            android:id="@+id/assento_movel"
+            android:gravity="right"
+            tools:text="nao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
 
     <Button
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         android:id="@+id/prosseguir"
         android:layout_marginTop="7dp"
-        android:text="Prosseguir"
+        android:text="proximo"
         android:background="@drawable/add_button"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

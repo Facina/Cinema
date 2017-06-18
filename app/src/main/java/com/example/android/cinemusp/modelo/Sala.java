@@ -1,9 +1,17 @@
 package com.example.android.cinemusp.modelo;
 
+import com.example.android.cinemusp.modelo.Assento;
+import com.example.android.cinemusp.modelo.AssentoCadeirante;
+import com.example.android.cinemusp.modelo.AssentoCasal;
+import com.example.android.cinemusp.modelo.AssentoMovel;
+import com.example.android.cinemusp.modelo.AssentoObeso;
+import com.example.android.cinemusp.modelo.AssentoPadrao;
+import com.example.android.cinemusp.modelo.AssentoReclinavel;
 import com.example.android.cinemusp.persistencia.CinemaException;
 import com.example.android.cinemusp.persistencia.ControleSalas;
 
 import java.util.ArrayList;
+
 
 public class Sala {
 
@@ -56,10 +64,10 @@ public class Sala {
             case 2:
                 mapa[coordX][coordY] = new AssentoReclinavel();
                 break;
-            case 3:
+            case 6:
                 mapa[coordX][coordY] = new AssentoMovel();
                 break;
-            case 4:
+            case 3:
                 mapa[coordX][coordY] = new AssentoCadeirante();
                 break;
             case 5:
@@ -69,7 +77,7 @@ public class Sala {
                 // lança exceção
                 mapa[coordX][coordY] = new AssentoObeso();
                 break;
-            case 6:
+            case 4:
                 if (coordX == maxAssentos - 1) {
                     break;
                 }
@@ -160,22 +168,5 @@ public class Sala {
         this.idSala = idSala;
     }
 
-    public static ArrayList<Sala> pesquisarSalas(String texto) throws CinemaException {
-        ControleSalas cs = new ControleSalas();
-        ArrayList<Sala> lista = null;
-        int numeroSala;
 
-        if (texto.equals("")) {
-            lista = cs.pesquisarSalas(0, 0); //pesquisar todos as salas
-        } else {
-            try {
-                numeroSala = Integer.parseInt(texto);
-            } catch (NumberFormatException e) {
-                throw new CinemaException("Valor do número da sala inválido!");
-            }
-            lista = cs.pesquisarSalas(numeroSala, 1); //pesquisar pelo numero da sala
-        }
-
-        return lista;
-    }
 }

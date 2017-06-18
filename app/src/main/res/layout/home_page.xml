@@ -36,9 +36,7 @@
     <ImageView
         android:scaleType="centerCrop"
         android:id="@+id/home_session"
-
-
-        tools:background="@mipmap/ic_launcher"
+        android:background="@drawable/curtina2"
 
         android:layout_margin="10dp"
         android:layout_width="match_parent"
@@ -48,7 +46,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/curtina"
 
-            tools:background="@mipmap/ic_launcher"
+
 
 
             android:layout_width="match_parent"

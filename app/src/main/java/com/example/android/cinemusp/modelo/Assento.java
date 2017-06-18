@@ -2,6 +2,11 @@ package com.example.android.cinemusp.modelo;
 
 public abstract class Assento {
 
+    @Override
+    public String toString() {
+        return "" + idAssento;
+    }
+
     private int idAssento, numero;
     private boolean status;
     private String imgL, imgR;

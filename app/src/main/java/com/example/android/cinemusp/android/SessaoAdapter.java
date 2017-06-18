@@ -23,14 +23,6 @@ import java.util.Date;
 public class SessaoAdapter extends ArrayAdapter<Sessao> {
 
 
-
-    /**
-     * Create a new {@link MovieAdapter} object.
-     *
-     * @param context is the current context (i.e. Activity) that the adapter is being created in.
-     * @param movies is the list of {@link Movie}s to be displayed.
-     *
-     */
     public SessaoAdapter(Context context, ArrayList<Sessao> movies) {
 
         super(context, 0, movies);
@@ -85,13 +77,14 @@ public class SessaoAdapter extends ArrayAdapter<Sessao> {
            fundo.setBackgroundResource(R.drawable.my_button);
 
         }
-        if (horario.getHours() > currentMovie.getHorario().getHours()){
-            if(horario.getMinutes() >currentMovie.getHorario().getMinutes() ) {
+        if (horario.getHours() > currentMovie.getHorario().getHours() ||
+                (horario.getHours() == currentMovie.getHorario().getHours()) &&
+                        (horario.getMinutes() > currentMovie.getHorario().getMinutes() )) {
                 fundo.setBackgroundResource(R.drawable.my_button);
                 Log.e("ixi", "sessao acabou ja");
             }
 
-        }
+
 
 
 

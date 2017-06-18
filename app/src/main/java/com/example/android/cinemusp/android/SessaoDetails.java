@@ -3,6 +3,7 @@ package com.example.android.cinemusp.android;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -10,13 +11,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.cinemusp.R;
+import com.example.android.cinemusp.modelo.Assento;
 import com.example.android.cinemusp.modelo.Filme;
+import com.example.android.cinemusp.modelo.Preco;
+import com.example.android.cinemusp.modelo.Sala;
+import com.example.android.cinemusp.modelo.Sessao;
+import com.kosalgeek.genasync12.AsyncResponse;
+import com.kosalgeek.genasync12.PostResponseAsyncTask;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
+import static com.example.android.cinemusp.R.id.prosseguir;
 
 public class SessaoDetails extends AppCompatActivity {
+    int rowSize = 0;
+    int colSize = 0;
+    String classificacao;
+    Preco preco;
+    Sessao atual;
+    Sala salaAtual;
+    String adress = "https://web-hosting-test.000webhostapp.com/mapa_assentos.php?idsessao=";
 
-    int numMeias=0;
-
-    int numIngresso=1;
 
     @Override
     public void onBackPressed() {
@@ -40,100 +60,199 @@ public class SessaoDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sessao_details);
+
+        final int id = (int) getIntent().getSerializableExtra("idSessao");
+        classificacao = (String) getIntent().getSerializableExtra("classificacao");
+        adress+=id;
+        atual = new Sessao();
+        atual.setSala(new Sala());
+        salaAtual = atual.getSala();
 
 
-        Button numIcr = (Button) findViewById(R.id.numero_increment);
-        Button numDec = (Button) findViewById(R.id.numero_decrement);
-        Button meiaIcr = (Button) findViewById(R.id.meia_icrement);
-        Button meiaDec = (Button) findViewById(R.id.meia_decrement);
-        Button prosseguir = (Button) findViewById(R.id.prosseguir);
+        final PostResponseAsyncTask task = new PostResponseAsyncTask(this, false, new AsyncResponse() {
 
-
-        final TextView numIngr = (TextView) findViewById(R.id.numero);
-        final TextView numMeia = (TextView) findViewById(R.id.meias);
-
-
-
-        numIngr.setText(""+numIngresso);
-        numMeia.setText(""+numMeias);
-
-        precoRefresh();
-
-        prosseguir.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void processFinish(String s) {
+
+                try {
+                    Log.e("getData", "parsing");
+                    JSONArray js = new JSONArray(s);
+                    Log.e("jsAray", "size= " + js.length());
+                    String bool;
+
+                    JSONObject sessao = null;
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 
+                    for (int i = 0; i < js.length(); i++) {
+                        sessao = js.getJSONObject(i);
 
-                Intent filmeIntent = new Intent(SessaoDetails.this, SalaChooser.class);
+                        if (i == 0) {
+                            Log.e("entrou no else", "ae carai");
+
+                            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+                            //  SimpleDateFormat timeFormat = new SimpleDateFormat("HH-mm-ss");
+                            atual.setData(new java.sql.Date(dateFormat.parse(sessao.getString("data")).getTime()));
+                            //  atual.setHorario(String.valueOf(new java.sql.Date(timeFormat.parse(sessao.getString("horario")).getTime())));
+                            atual.setHorario(new java.sql.Time(timeFormat.parse(sessao.getString("horario")).getTime()));
+
+                            atual.setHorarioString(sessao.getString("horario"));
+                            atual.setIdSessao(sessao.getInt("idSessao"));
+                            bool = sessao.getString("imax");
+                            if (bool.equals("0")) {
+                                atual.setImax(false);
+                            } else {
+                                atual.setImax(true);
+                            }
+                            bool = sessao.getString("legendado");
+                            if (bool.equals("0")) {
+                                atual.setLegendado(false);
+                            } else {
+                                atual.setLegendado(true);
+                            }
+                            bool = sessao.getString("tresD");
+                            if (bool.equals("0")) {
+                                atual.setTresD(false);
+                            } else {
+                                atual.setTresD(true);
+                            }
+                            bool = sessao.getString("lotada");
+                            if (bool.equals("0")) {
+                                atual.setLotada(false);
+                            } else {
+                                atual.setLotada(true);
+                            }
+                            bool = sessao.getString("quatroK");
+                            if (bool.equals("0")) {
+                                atual.setQuatroK(false);
+                            } else {
+                                atual.setQuatroK(true);
+                            }
+                            rowSize = sessao.getInt("fileiras");
+                            colSize = sessao.getInt("maxAssentos");
+                            salaAtual.setIdSala(sessao.getInt("idSala"));
+                            salaAtual.setNumeroSala(sessao.getInt("numeroSala"));
+                            salaAtual.setNFileiras(sessao.getInt("fileiras"));
+                            salaAtual.setMaxAssentos(sessao.getInt("maxAssentos"));
+                            preco = new Preco();
+                            preco.setPrecoCadeirante((float) sessao.getDouble("precoCadeirante"));
+                            preco.setPrecoCasal((float) sessao.getDouble("precoCasal"));
+                            preco.setPrecoMovel((float) sessao.getDouble("precoMovel"));
+                            preco.setPrecoObeso((float) sessao.getDouble("precoObeso"));
+                            preco.setPrecoPadrao((float) sessao.getDouble("precoPadrao"));
+                            preco.setPrecoReclinavel((float) sessao.getDouble("precoReclinavel"));
+                            preco.setIdPreco(sessao.getInt("idPreco"));
+                            salaAtual.setAssentos(new Assento[sessao.getInt("fileiras")][sessao.getInt("maxAssentos")]);
+                        }
+
+                        int numAss = sessao.getInt("numeroAssento");
+                        int maxAss = sessao.getInt("maxAssentos");
+                        int x = numAss / maxAss;
+                        int y = numAss % maxAss;
+
+                        salaAtual.setAssento(sessao.getInt("tipoAssento"), x, y);
+                        Assento colocarIdAssento = salaAtual.getAssento(x, y);
+                        colocarIdAssento.setIdAssento(sessao.getInt("idAssento"));
+                        bool = sessao.getString("statusAssento");
+                        if (bool.equals("0")) {
+                            colocarIdAssento.setStatus(false);
+                        } else {
+                            colocarIdAssento.setStatus(true);
+                        }
 
 
-                startActivity(filmeIntent);
-
-            }
-        });
-
-        numIcr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numIngresso++;
-                precoRefresh();
-                numIngr.setText(""+numIngresso);
-
-            }
-        });
-
-        numDec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(numIngresso>1){
-                    numIngresso--;
-                    precoRefresh();
-                    numIngr.setText(""+numIngresso);
+                        Log.e("numero do assento", " x = " + x + " y = " + y + " numAss= " + numAss + " maxAss = " + maxAss);
+                        // Log.e("4k", "= " + atual.isQuatroK());
+                        //Log.e("legendado", "= " + atual.isLegendado());
+                        // Log.e("lotada", "= " + atual.isLotada());
+                        //Log.e("imax", "= " + atual.isImax());
+                        //Log.e("idSessao", "= " + atual.getIdSessao());
 
 
+                    }
+                    setContentView(R.layout.activity_sessao_details);
+
+                    TextView salaHorario = (TextView)findViewById(R.id.sala_horario);
+                    TextView salaAudio = (TextView)findViewById(R.id.sala_tipo);
+                    TextView salaClassificao = (TextView)findViewById(R.id.sala_classificacao);
+                    TextView sala3D = (TextView)findViewById(R.id.sala_3d);
+                    TextView salaImax = (TextView)findViewById(R.id.sala_imax);
+                    TextView sala4K = (TextView)findViewById(R.id.sala_4k);
+
+
+                    TextView precoPadrao = (TextView)findViewById(R.id.assento_padrao);
+                    TextView precoReclinavel = (TextView)findViewById(R.id.assento_reclinavel);
+                    TextView precoCadeirante = (TextView)findViewById(R.id.assento_cadeirante);
+                    TextView precoCasal = (TextView)findViewById(R.id.assento_casal);
+                    TextView precoObeso = (TextView)findViewById(R.id.assento_obeso);
+                    TextView precoMovel = (TextView)findViewById(R.id.assento_movel);
+
+
+                    salaHorario.setText(atual.getHorarioString());
+
+                    if(atual.isLegendado())
+                    salaAudio.setText("Legendado");
+                    else  salaAudio.setText("Dublado");
+
+                    salaClassificao.setText(classificacao);
+
+                    if(atual.isTresD())
+                    sala3D.setText("sim");
+                    else sala3D.setText("não");
+
+                    if(atual.isImax()) salaImax.setText("sim");
+                    else salaImax.setText("não");
+
+                    if(atual.isQuatroK()) sala4K.setText("sim");
+                    else sala4K.setText("não");
+                    Locale Brasil = new Locale("pt", "BR");
+                    if(preco.getPrecoPadrao()!=0){
+                        precoPadrao.setText(NumberFormat.getCurrencyInstance(Brasil).format(preco.getPrecoPadrao()));;
+                    }else precoPadrao.setText("indisponível");
+                    if(preco.getPrecoReclinavel()!=0){
+                        precoReclinavel.setText(NumberFormat.getCurrencyInstance(Brasil).format(preco.getPrecoReclinavel()));;
+                    }else precoReclinavel.setText("indisponível");
+                    if(preco.getPrecoCadeirante()!=0){
+                        precoCadeirante.setText(NumberFormat.getCurrencyInstance(Brasil).format(preco.getPrecoCadeirante()));;
+                    }else precoCadeirante.setText("indisponível");
+                    if(preco.getPrecoCasal()!=0){
+                        precoCasal.setText(NumberFormat.getCurrencyInstance(Brasil).format(preco.getPrecoCasal()));;
+                    }else precoCasal.setText("indisponível");
+                    if(preco.getPrecoObeso()!=0){
+                        precoObeso.setText(NumberFormat.getCurrencyInstance(Brasil).format(preco.getPrecoObeso()));;
+                    }else precoObeso.setText("indisponível");
+                    if(preco.getPrecoMovel()!=0){
+                        precoMovel.setText(NumberFormat.getCurrencyInstance(Brasil).format(preco.getPrecoMovel()));;
+                    }else precoMovel.setText("indisponível");
+
+                    Button prosseguir = (Button) findViewById(R.id.prosseguir);
+
+
+                    prosseguir.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            Intent filmeIntent = new Intent(SessaoDetails.this, SalaChooser.class);
+                            filmeIntent.putExtra("idSessao", id);
+
+                            startActivity(filmeIntent);
+
+                        }
+                    });
+
+
+                } catch (Exception e) {
+                    Toast.makeText(SessaoDetails.this, "Detalhes não encontrados :(", Toast.LENGTH_LONG).show();
+
+                    e.printStackTrace();
                 }
-                else {
-                    Toast.makeText(SessaoDetails.this,"Não pode comprar menos de um ingresso",Toast.LENGTH_LONG).show();
-                }
+
+
             }
         });
+        task.execute(adress);
 
-        meiaIcr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(numMeias<numIngresso){
-                    numMeias++;
-                    precoRefresh();
-                    numMeia.setText(""+numMeias);
-
-                }else{
-                    Toast.makeText(SessaoDetails.this,"Número de meias não pode exceder o número de ingresso",Toast.LENGTH_LONG).show();
-
-                }
-            }
-        });
-
-        meiaDec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(numMeias>=1){
-                    numMeias--;
-                    precoRefresh();
-                    numMeia.setText(""+numMeias);
-
-                }
-            }
-        });
-
-    }
-
-
-    private void precoRefresh(){
-        TextView preco = (TextView)findViewById(R.id.sessao_preco);
-        int total = (numIngresso-numMeias)*10 + numMeias*5;
-        preco.setText(""+total);
 
     }
 }

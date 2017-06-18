@@ -33,7 +33,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".android.SalaChooser"
             android:parentActivityName=".android.MainActivity"
-            android:screenOrientation="portrait" ></activity>
+            android:screenOrientation="landscape" ></activity>
     </application>
 
 </manifest>
