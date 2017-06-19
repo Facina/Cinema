@@ -7,7 +7,18 @@ public abstract class Assento {
         return "" + idAssento;
     }
 
-    private int idAssento, numero;
+    private int idAssento;
+    private int numero;
+
+    public int getIdAssentoSessao() {
+        return idAssentoSessao;
+    }
+
+    public void setIdAssentoSessao(int idAssentoSessao) {
+        this.idAssentoSessao = idAssentoSessao;
+    }
+
+    private int idAssentoSessao;
     private boolean status;
     private String imgL, imgR;
 

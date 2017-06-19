@@ -41,6 +41,7 @@ import org.json.JSONObject;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import static android.R.attr.x;
@@ -56,6 +57,8 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
     boolean[][] mapaIsChecked;
     float precoTotal = 0;
     String adress = "https://web-hosting-test.000webhostapp.com/mapa_assentos.php?idsessao=";
+    String updateAdress = "https://web-hosting-test.000webhostapp.com/update.php";
+
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() == 0) {
@@ -177,6 +180,7 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                             salaAtual.setAssento(sessao.getInt("tipoAssento"), x,y);
                             Assento colocarIdAssento = salaAtual.getAssento(x,y);
                             colocarIdAssento.setIdAssento(sessao.getInt("idAssento"));
+                            colocarIdAssento.setIdAssentoSessao(sessao.getInt("idAssentoSessao"));
                             bool = sessao.getString("statusAssento");
                              if (bool.equals("0")) {
                                  colocarIdAssento.setStatus(false);
@@ -370,7 +374,7 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                                 for (int j = 0; j < colSize; j++) {
                                     if (mapaIsChecked[i][j]) {//Vai comprar esse
 
-                                        ingressosComprados.add(new Ingresso(salaAtual.getAssento(i, j), preco, isMeia[i][j]));
+                                        ingressosComprados.add(new Ingresso(salaAtual.getAssento(i, j), preco, isMeia[i][j],i,j));
 
                                     }
                                 }
@@ -389,29 +393,37 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                                 public void onClick(DialogInterface dialog, int which) {
                                     switch (which) {
                                         case DialogInterface.BUTTON_POSITIVE:
+                                            final int[] tot = {0};
+                                            for(int i=0;i<ingressosComprados.size();i++) {
+                                                HashMap postdata = new HashMap();
 
 
-                                            String jsonString = "{\"upload_assento\":[";
+                                                postdata.put("idAssento", "" + ingressosComprados.get(i).getAssento().getIdAssento());
+                                                postdata.put("mobile", "android");
+                                                postdata.put("idSessao", "" + atual.getIdSessao());
+                                                postdata.put("idAssentoSessao", "" + ingressosComprados.get(i).getAssento().getIdAssentoSessao());
+                                                postdata.put("valor", "" + ingressosComprados.get(i).getPreco2());
+                                                if (isMeia[ingressosComprados.get(i).getX()][ingressosComprados.get(i).getY()])
+                                                    postdata.put("meia", "1");
+                                                else postdata.put("meia", "0");
 
-                                            for(Ingresso registrar : ingressosComprados){
-                                                JSONObject ingresso = new JSONObject();
 
-                                                try {
-                                                    ingresso.put("idAssentoSessao",""+registrar.getAssento().getIdAssento());
-                                                    ingresso.put("statusAssento","1");
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-                                                jsonString+=ingresso.toString()+",";
+                                                PostResponseAsyncTask updateTask = new PostResponseAsyncTask(SalaChooser.this, postdata, new AsyncResponse() {
+                                                    @Override
+                                                    public void processFinish(String s) {
+                                                        Log.e("update", "sera?" + s);
+                                                        tot[0]++;
+                                                        Toast.makeText(SalaChooser.this, s, Toast.LENGTH_SHORT).show();
+                                                        if(tot[0] ==ingressosComprados.size())finish();
+                                                    }
+
+                                                });
+
+                                                updateTask.setLoadingMessage("Efetuando a compra do(s) ingresso(s)");
+                                                updateTask.execute(updateAdress);
+
+
                                             }
-
-                                            jsonString = jsonString.substring(0,jsonString.length()-1);
-                                            jsonString+="]}";
-
-                                           
-
-
-
 
                                             break;
                                         case DialogInterface.BUTTON_NEGATIVE:

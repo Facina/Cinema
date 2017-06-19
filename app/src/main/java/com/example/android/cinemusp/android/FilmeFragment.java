@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 
+import android.support.v4.content.IntentCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -190,6 +191,7 @@ public class FilmeFragment extends Fragment {
 
                 Intent filmeIntent = new Intent(getActivity(), MovieDetails.class);
                 filmeIntent.putExtra("id", movie.getidFilme());
+                filmeIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
                 startActivity(filmeIntent);
 

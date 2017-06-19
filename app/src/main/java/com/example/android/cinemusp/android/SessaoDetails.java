@@ -1,6 +1,7 @@
 package com.example.android.cinemusp.android;
 
 import android.content.Intent;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -235,9 +236,10 @@ public class SessaoDetails extends AppCompatActivity {
 
                             Intent filmeIntent = new Intent(SessaoDetails.this, SalaChooser.class);
                             filmeIntent.putExtra("idSessao", id);
+                            filmeIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
                             startActivity(filmeIntent);
-
+                            finish();
                         }
                     });
 

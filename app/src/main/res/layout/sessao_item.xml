@@ -18,7 +18,7 @@
         android:layout_marginTop="5dp"
         android:id="@+id/horario_item"
         tools:text="horario"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:gravity="center"
 
 
@@ -30,6 +30,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:id="@+id/grid_root_item">
+    <TextView
+
+        android:textColor="#FFFFFF"
+        android:id="@+id/dia_da_semana"
+        tools:text="quinta"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
     <TextView
         android:textColor="#FFFFFF"
         android:id="@+id/legendado"

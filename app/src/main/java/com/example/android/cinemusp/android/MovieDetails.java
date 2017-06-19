@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -175,6 +176,7 @@ public class MovieDetails extends AppCompatActivity{
 
                         Log.e("getData","parsed");
 
+                    Log.e("size list","who ="+lista_sessao.size());
                     setContentView(R.layout.movie_details);
 
                     // Find the ImageView in the movie_item.xml layout with the ID image
@@ -225,23 +227,26 @@ public class MovieDetails extends AppCompatActivity{
                     if(lista_sessao.isEmpty()){
                         Toast.makeText(getApplicationContext(),"Não há nenhuma sessão deste filme hoje.",Toast.LENGTH_LONG).show();
                     }else
-                    set.setText("Sessões de hoje");
+                    set.setText("Sessões da semana");
 
-                    GridView gridList = (GridView) findViewById(R.id.sessao_grid);
+                    ExpandableHeightGridView gridList = (ExpandableHeightGridView) findViewById(R.id.sessao_grid);
                     SessaoAdapter adapter = new SessaoAdapter(MovieDetails.this, lista_sessao);
 
                     gridList.setAdapter(adapter);
+                    gridList.setExpanded(true);
+
 
                     gridList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                             Log.e("gridlistclick", "clicked");
                             java.sql.Time horario = new java.sql.Time((new java.util.Date()).getTime());
+                            java.sql.Date data = new java.sql.Date((new java.util.Date()).getTime());
 
                             Sessao sessaoClicada = lista_sessao.get(position);
                             if(!sessaoClicada.isLotada()) {
-                                if (horario.getHours() > sessaoClicada.getHorario().getHours() ||
-                                        (horario.getHours() == sessaoClicada.getHorario().getHours()) &&
+                                if (data.getDate() > sessaoClicada.getData().getDate() || (data.getDate() == sessaoClicada.getData().getDate() && horario.getHours() > sessaoClicada.getHorario().getHours()) ||
+                                        (data.getDate() == sessaoClicada.getData().getDate() && horario.getHours() == sessaoClicada.getHorario().getHours()) &&
                                                 (horario.getMinutes() >sessaoClicada.getHorario().getMinutes()  )){
                                     Toast.makeText(MovieDetails.this,"Sessão já passou",Toast.LENGTH_LONG).show();
 
@@ -251,7 +256,9 @@ public class MovieDetails extends AppCompatActivity{
                                     Intent sessaoIntent = new Intent(MovieDetails.this, SessaoDetails.class);
                                     sessaoIntent.putExtra("idSessao", sessaoClicada.getIdSessao());
                                     sessaoIntent.putExtra("classificacao",currMovie.getClassificacao());
+                                    sessaoIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                     startActivity(sessaoIntent);
+                                    finish();
                                 }
 
                             }else{

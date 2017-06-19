@@ -188,24 +188,25 @@ The Overview section will describe the pros and cons in more detail."
 
 
 
-        <GridView
+        <com.example.android.cinemusp.android.ExpandableHeightGridView
             android:id="@+id/sessao_grid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:numColumns="2"
+            android:horizontalSpacing="8dp"
+            android:verticalSpacing="5dp"
             android:layout_marginBottom="10dp"
             android:drawSelectorOnTop="true"
             tools:background="@drawable/curtina"
             >
 
 
-        </GridView>
+        </com.example.android.cinemusp.android.ExpandableHeightGridView>
 
 
     </LinearLayout>
 
-
-
-
-
 </ScrollView>
+
+
+
