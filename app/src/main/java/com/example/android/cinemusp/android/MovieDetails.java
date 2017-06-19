@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,10 +33,10 @@ import java.net.ProtocolException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import static android.media.CamcorderProfile.get;
 
 /**
- * Created by bruno on 6/10/17.
+ * @author Grupo 4 - Turma B POO
+ * classe da pagina que mostra os detalhes do filme
  */
 
 public class MovieDetails extends AppCompatActivity{
@@ -46,6 +44,9 @@ public class MovieDetails extends AppCompatActivity{
     String adress = "https://web-hosting-test.000webhostapp.com/movie_details.php";
     ArrayList<Sessao> lista_sessao = null;
 
+    /**
+     *  Fazendo com que o botao de retorno volte para o inicio
+     */
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() == 0) {
@@ -65,26 +66,29 @@ public class MovieDetails extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Criando a atividade que mostra os detalhes do filme selecionado
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         int id =(int) getIntent().getSerializableExtra("id");
         adress=adress+"?idfilme="+id;
-        Log.e("adress","is "+adress);
+        Log.v("adress","is "+adress);
         lista_sessao = new ArrayList<Sessao>();
 
         final Filme currMovie = new Filme();
 
+        //Pesquisa assincrona dos dados do filme selecionado e das sessoes relacionadas a ele
         PostResponseAsyncTask task = new PostResponseAsyncTask(this, false,new AsyncResponse() {
 
             @Override
             public void processFinish(String s){
 
                 try{
-                    Log.e("getData","parsing");
                     JSONArray js = new JSONArray(s);
-                    Log.e("jsAray","size= "+js.length());
                     String bool;
                     JSONObject filme = null;
                     JSONObject sessao = null;
@@ -109,20 +113,15 @@ public class MovieDetails extends AppCompatActivity{
 
                                 currMovie.setIdFilme(filme.getInt("idFilme"));
                             } catch (Exception e) {
-                                Log.e("Filmefragmetn", "" + filme.getString("nomeFilme"));
-                                Log.e("FilmeFragment", "data exception" + filme.getString("dataEstreia") + " asd " + filme.getString("dataSaida"));
                                 e.printStackTrace();
                             }
 
                         }
                         else {
-                            Log.e("entrou no else", "ae carai");
                             sessao = js.getJSONObject(i);
                             Sessao atual = new Sessao();
                             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-                            //  SimpleDateFormat timeFormat = new SimpleDateFormat("HH-mm-ss");
                             atual.setData(new java.sql.Date(dateFormat.parse(sessao.getString("data")).getTime()));
-                            //  atual.setHorario(String.valueOf(new java.sql.Date(timeFormat.parse(sessao.getString("horario")).getTime())));
                             atual.setHorario(new java.sql.Time(timeFormat.parse(sessao.getString("horario")).getTime()));
 
                             atual.setHorarioString(sessao.getString("horario"));
@@ -163,63 +162,35 @@ public class MovieDetails extends AppCompatActivity{
                             Preco preco = new Preco();
                             preco.setIdPreco(sessao.getInt("idPreco"));
 
-                            Log.e("tresD", "= " + atual.isTresD());
-                            Log.e("4k", "= " + atual.isQuatroK());
-                            Log.e("legendado", "= " + atual.isLegendado());
-                            Log.e("lotada", "= " + atual.isLotada());
-                            Log.e("imax", "= " + atual.isImax());
-                            Log.e("idSessao", "= " + atual.getIdSessao());
 
                             lista_sessao.add(atual);
                         }
                     }
 
-                        Log.e("getData","parsed");
 
-                    Log.e("size list","who ="+lista_sessao.size());
                     setContentView(R.layout.movie_details);
 
-                    // Find the ImageView in the movie_item.xml layout with the ID image
                     ImageView imageView = (ImageView) findViewById(R.id.movie_image);
 
-                    // Using Picasso interface to display and image from a URL
                     Context context = getApplicationContext();
                     Picasso.with(context).load(currMovie.getImgLink()).into(imageView);
 
-                    // Find the TextView in the movie_item.xml layout with the ID title.
                     TextView titleTextView = (TextView) findViewById(R.id.filme_titulo);
-                    // Get the title from the currentMovie object and set this text on
-                    // the Title TextView.
                     titleTextView.setText(currMovie.getNome());
 
-                    // Find the TextView in the movie_item.xml layout with the ID title.
                     TextView classificacaoTextView = (TextView) findViewById(R.id.filme_classificacao);
-                    // Get the title from the currentMovie object and set this text on
-                    // the Title TextView.
                     classificacaoTextView.setText(currMovie.getClassificacao());
 
-                    // Find the TextView in the movie_item.xml layout with the ID duration.
                     TextView durationTextView = (TextView) findViewById(R.id.filme_duracao);
-                    // Get the duration from the currentMovie object and set this text on
-                    // the duration TextView.
                     durationTextView.setText(""+currMovie.getDuracao()+" min");
 
-                    // Find the TextView in the movie_item.xml layout with the ID rating.
                     TextView dataEstreiaTextView = (TextView) findViewById(R.id.filme_data_estreia);
-                    // Get the rating from the currentMovie object and set this text on
-                    // the rating TextView.
                     dataEstreiaTextView.setText(""+currMovie.getDataEstreia());
 
-                    // Find the TextView in the movie_item.xml layout with the ID sinopse.
                     TextView dataSaidaTextView = (TextView) findViewById(R.id.filme_data_saida);
-                    // Get the sinopse from the currentMovie object and set this text on
-                    // the duration TextView.
                     dataSaidaTextView.setText(""+currMovie.getDataSaida());
 
-                    // Find the TextView in the movie_item.xml layout with the ID sinopse.
                     TextView sinopseTextView = (TextView) findViewById(R.id.filme_sinopse);
-                    // Get the sinopse from the currentMovie object and set this text on
-                    // the duration TextView.
                     sinopseTextView.setText(currMovie.getSinopse());
 
                     TextView set = (TextView) findViewById(R.id.sessoes);
@@ -239,15 +210,14 @@ public class MovieDetails extends AppCompatActivity{
                     gridList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            Log.e("gridlistclick", "clicked");
                             java.sql.Time horario = new java.sql.Time((new java.util.Date()).getTime());
                             java.sql.Date data = new java.sql.Date((new java.util.Date()).getTime());
 
                             Sessao sessaoClicada = lista_sessao.get(position);
                             if(!sessaoClicada.isLotada()) {
-                                if (data.getDate() > sessaoClicada.getData().getDate() || (data.getDate() == sessaoClicada.getData().getDate() && horario.getHours() > sessaoClicada.getHorario().getHours()) ||
+                                if (data.getMonth() > sessaoClicada.getData().getMonth() || (data.getDate() > sessaoClicada.getData().getDate() || (data.getDate() == sessaoClicada.getData().getDate() && horario.getHours() > sessaoClicada.getHorario().getHours()) ||
                                         (data.getDate() == sessaoClicada.getData().getDate() && horario.getHours() == sessaoClicada.getHorario().getHours()) &&
-                                                (horario.getMinutes() >sessaoClicada.getHorario().getMinutes()  )){
+                                                (horario.getMinutes() >sessaoClicada.getHorario().getMinutes()  ))){
                                     Toast.makeText(MovieDetails.this,"Sessão já passou",Toast.LENGTH_LONG).show();
 
 

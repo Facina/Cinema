@@ -1,21 +1,13 @@
 package com.example.android.cinemusp.android;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,19 +15,14 @@ import android.widget.Toast;
 
 import com.example.android.cinemusp.R;
 import com.example.android.cinemusp.modelo.Assento;
-import com.example.android.cinemusp.modelo.AssentoObeso;
 import com.example.android.cinemusp.modelo.Ingresso;
 import com.example.android.cinemusp.modelo.Preco;
 import com.example.android.cinemusp.modelo.Sala;
 import com.example.android.cinemusp.modelo.Sessao;
 import com.kosalgeek.genasync12.AsyncResponse;
 import com.kosalgeek.genasync12.PostResponseAsyncTask;
-import com.squareup.picasso.Picasso;
 
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.NumberFormat;
@@ -44,10 +31,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
-import static android.R.attr.x;
-import static android.R.attr.y;
-
+/**
+ * Classe que mostra a representacao da sala para selecao dos assentos.
+ */
 public class SalaChooser extends AppCompatActivity implements View.OnClickListener {
+
     int rowSize=0;
     int colSize=0;
     Preco preco ;
@@ -82,7 +70,6 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_sala_chooser);
 
         final int id =(int) getIntent().getSerializableExtra("idSessao");
 
@@ -102,9 +89,7 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
             public void processFinish(String s){
 
                 try{
-                    Log.e("getData","parsing");
                     JSONArray js = new JSONArray(s);
-                    Log.e("jsAray","size= "+js.length());
                     String bool;
 
                     JSONObject sessao = null;
@@ -115,12 +100,9 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                         sessao = js.getJSONObject(i);
 
                             if(i==0) {
-                                Log.e("entrou no else", "ae carai");
 
                                 SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-                                //  SimpleDateFormat timeFormat = new SimpleDateFormat("HH-mm-ss");
                                 atual.setData(new java.sql.Date(dateFormat.parse(sessao.getString("data")).getTime()));
-                                //  atual.setHorario(String.valueOf(new java.sql.Date(timeFormat.parse(sessao.getString("horario")).getTime())));
                                 atual.setHorario(new java.sql.Time(timeFormat.parse(sessao.getString("horario")).getTime()));
 
                                 atual.setHorarioString(sessao.getString("horario"));
@@ -180,7 +162,6 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                             salaAtual.setAssento(sessao.getInt("tipoAssento"), x,y);
                             Assento colocarIdAssento = salaAtual.getAssento(x,y);
                             colocarIdAssento.setIdAssento(sessao.getInt("idAssento"));
-                            colocarIdAssento.setIdAssentoSessao(sessao.getInt("idAssentoSessao"));
                             bool = sessao.getString("statusAssento");
                              if (bool.equals("0")) {
                                  colocarIdAssento.setStatus(false);
@@ -189,17 +170,9 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                              }
 
 
-                            Log.e("numero do assento", " x = " + x+ " y = "+y+ " numAss= "+numAss+ " maxAss = "+maxAss );
-                          // Log.e("4k", "= " + atual.isQuatroK());
-                            //Log.e("legendado", "= " + atual.isLegendado());
-                           // Log.e("lotada", "= " + atual.isLotada());
-                            //Log.e("imax", "= " + atual.isImax());
-                            //Log.e("idSessao", "= " + atual.getIdSessao());
-
 
                     }
 
-                    Log.e("getData","parsed");
 
                     setContentView(R.layout.activity_sala_chooser);
 
@@ -208,19 +181,18 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                     View image;
                     Assento insercaoAssento;
                     TableRow row;
-                    boolean esqObeso = false;
-                    boolean esqCasal = false;
+
+
                     TextView numSala = (TextView) findViewById(R.id.sala_num);
                     numSala.setText("Sala "+salaAtual.getNumeroSala());
                     mapaIsChecked = new boolean[salaAtual.getNFileiras()][salaAtual.getMaxAssentos()];
                     isMeia = new boolean[salaAtual.getNFileiras()][salaAtual.getMaxAssentos()];
                     int k=0;
-                    // Tabela com todos as imagens;
+
                     for(int i=0;i<rowSize;i++){
                         row = new TableRow(getApplicationContext());
 
                         for(int j=0;j<salaAtual.getMaxAssentos();j++) {
-                            Log.e("entao bora ver","i= "+i+" j = "+j);
                             mapaIsChecked[i][j]=false;
                             isMeia[i][j]=false;
                             image = getLayoutInflater().inflate(R.layout.assento_item, null);
@@ -379,11 +351,9 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                                     }
                                 }
                             }
-                            Log.e("quantida", "igual = " + ingressosComprados.size());
                             precoTotal = 0;
                             for (Ingresso umIngresso : ingressosComprados) {
                                 precoTotal += umIngresso.getPreco2();
-                                Log.e("idAssento=","= "+umIngresso.getAssento().getIdAssento()+ " true");
 
                             }
 
@@ -401,7 +371,6 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                                                 postdata.put("idAssento", "" + ingressosComprados.get(i).getAssento().getIdAssento());
                                                 postdata.put("mobile", "android");
                                                 postdata.put("idSessao", "" + atual.getIdSessao());
-                                                postdata.put("idAssentoSessao", "" + ingressosComprados.get(i).getAssento().getIdAssentoSessao());
                                                 postdata.put("valor", "" + ingressosComprados.get(i).getPreco2());
                                                 if (isMeia[ingressosComprados.get(i).getX()][ingressosComprados.get(i).getY()])
                                                     postdata.put("meia", "1");
@@ -411,7 +380,7 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                                                 PostResponseAsyncTask updateTask = new PostResponseAsyncTask(SalaChooser.this, postdata, new AsyncResponse() {
                                                     @Override
                                                     public void processFinish(String s) {
-                                                        Log.e("update", "sera?" + s);
+                                                        Log.v("update", "sera? " + s);
                                                         tot[0]++;
                                                         Toast.makeText(SalaChooser.this, s, Toast.LENGTH_SHORT).show();
                                                         if(tot[0] ==ingressosComprados.size())finish();
@@ -473,17 +442,13 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
         int clickedID = (int)  v.getTag();
         final int x =clickedID/colSize;
         final int y =clickedID%colSize;
-        Log.e("x do role =" +x, "y do role  ="+y);
         TableLayout tabela = (TableLayout) findViewById(R.id.grid_assentos);
         TableRow rowNext =  (TableRow) tabela.getChildAt(x);
         View vizinho;
 
-        Log.e("o cliked é "," isso ="+clickedID);
-        Log.e( "row = "+rowSize, "col "+ colSize);
 
         Assento ass = salaAtual.getAssento(x,y);
         if(ass == null){
-            Log.e("veio null","mas q porra");
             return;
         }
         int tipo = ass.getTipo();
@@ -492,7 +457,6 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
             isMeia[x][y]=false;
 
             mapaIsChecked[x][y]=false;
-                Log.e("x ="+x,"y = "+y);
             switch (tipo){
                 case 1://padrao
                     v.setBackgroundResource(R.drawable.assento_padrao_verde);
@@ -510,15 +474,11 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                     v.setBackgroundResource(R.drawable.assento_casal_verde_esquerda);
                     vizinho =  rowNext.getChildAt(y+1);
                     vizinho.setBackgroundResource(R.drawable.assento_casal_verde_direita);
-                 //   ImageView proxima =(ImageView)findViewById(Integer.parseInt(clickedID)+1);
-                   // proxima.setBackgroundResource(R.drawable.assento_casal_verde_direita);
                     break;
                 case 5://obeso
                     v.setBackgroundResource(R.drawable.assento_obeso_verde_esquerdo);
                     vizinho =  rowNext.getChildAt(y+1);
                     vizinho.setBackgroundResource(R.drawable.assento_obeso_verde_direito);
-                    //ImageView proxima2 =(ImageView)findViewById(Integer.parseInt(clickedID)+1);
-                    //proxima2.setBackgroundResource(R.drawable.assento_obeso_verde_direito);
                     break;
                 case 6://movel
                     v.setBackgroundResource(R.drawable.assento_movel_verde);
@@ -542,6 +502,8 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                 }
 
             };
+
+
             AlertDialog.Builder meiaConfirm = new AlertDialog.Builder(v.getContext());
             meiaConfirm.setMessage("Qual tipo do ingresso?")
                     .setPositiveButton("Inteira",dialog).setNegativeButton("Meia",dialog).show();
@@ -564,15 +526,11 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
                     v.setBackgroundResource(R.drawable.assento_casal_esquerdo_cinza);
                     vizinho =  rowNext.getChildAt(y+1);
                     vizinho.setBackgroundResource(R.drawable.assento_casal_cinza_direita);
-                   // ImageView proxima =(ImageView)findViewById(clickedID+1);
-                    ////proxima.setBackgroundResource(R.drawable.assento_casal_cinza_direita);
                     break;
                 case 5://obeso
                     v.setBackgroundResource(R.drawable.assento_obeso_cinza_esquerdo);
                     vizinho =  rowNext.getChildAt(y+1);
                     vizinho.setBackgroundResource(R.drawable.assento_obeso_cinza_direito);
-                    //ImageView proxima2 =(ImageView)findViewById(clickedID+1);
-                    //proxima2.setBackgroundResource(R.drawable.assento_obeso_cinza_direito);
                     break;
                 case 6://movel
                     v.setBackgroundResource(R.drawable.assento_movel_cinza);

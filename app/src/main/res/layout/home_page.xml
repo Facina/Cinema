@@ -8,6 +8,7 @@
 
 
     <ImageView
+
         android:layout_marginTop="10dp"
         android:src="@drawable/cinema_logo"
         android:layout_gravity="center_horizontal"

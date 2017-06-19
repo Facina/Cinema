@@ -2,11 +2,16 @@
 package com.example.android.cinemusp.android;
 
 import android.content.Context;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import com.example.android.cinemusp.R;
+
+/**
+ * Classe que adapata um ViewPager em Fragments
+ * @author Grupo 4 - Turma B POO
+ */
 
 public class FragmentAdapter extends FragmentPagerAdapter {
 
@@ -52,6 +57,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         if (position == 0) {
+
             return mContext.getString(R.string.home);
         } else if (position == 1) {
             return mContext.getString(R.string.em_cartaz);

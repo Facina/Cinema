@@ -1,10 +1,15 @@
 package com.example.android.cinemusp.android;
 
+//Classe importada do gitHub do usuário SakuraBird
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+/**
+ * Classe que adapta o gridview evitando um problema de conflito quando usado em conjunto com um scrollView
+ */
 public class ExpandableHeightGridView extends GridView
 {
 
@@ -31,6 +36,12 @@ public class ExpandableHeightGridView extends GridView
         return expanded;
     }
 
+    /**
+     * Método que calcula a quantidade de fileiras a serem mostrada no gridVIew aumentando sua altura
+     * evitando assim possivel conflito de deslizamento.
+     * @param widthMeasureSpec
+     * @param heightMeasureSpec
+     */
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {

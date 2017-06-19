@@ -1,7 +1,6 @@
 package com.example.android.cinemusp.android;
 
 import android.content.Intent;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 
 import com.example.android.cinemusp.R;
 import com.example.android.cinemusp.modelo.Assento;
-import com.example.android.cinemusp.modelo.Filme;
 import com.example.android.cinemusp.modelo.Preco;
 import com.example.android.cinemusp.modelo.Sala;
 import com.example.android.cinemusp.modelo.Sessao;
@@ -27,7 +25,11 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import static com.example.android.cinemusp.R.id.prosseguir;
+/**
+ * @author Grupo 4 - Turma B POO
+ *
+ * Classe que mostra os detalhes da sessao
+ */
 
 public class SessaoDetails extends AppCompatActivity {
     int rowSize = 0;
@@ -44,7 +46,7 @@ public class SessaoDetails extends AppCompatActivity {
         if (getFragmentManager().getBackStackEntryCount() == 0) {
             this.finish();
         } else {
-            super.onBackPressed(); //replaced
+            super.onBackPressed();
         }
 
     }
@@ -58,6 +60,10 @@ public class SessaoDetails extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Método que mostra os detalhes da sessao de acordo com o banco de dados.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +82,6 @@ public class SessaoDetails extends AppCompatActivity {
             public void processFinish(String s) {
 
                 try {
-                    Log.e("getData", "parsing");
                     JSONArray js = new JSONArray(s);
                     Log.e("jsAray", "size= " + js.length());
                     String bool;
@@ -89,12 +94,9 @@ public class SessaoDetails extends AppCompatActivity {
                         sessao = js.getJSONObject(i);
 
                         if (i == 0) {
-                            Log.e("entrou no else", "ae carai");
 
                             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-                            //  SimpleDateFormat timeFormat = new SimpleDateFormat("HH-mm-ss");
                             atual.setData(new java.sql.Date(dateFormat.parse(sessao.getString("data")).getTime()));
-                            //  atual.setHorario(String.valueOf(new java.sql.Date(timeFormat.parse(sessao.getString("horario")).getTime())));
                             atual.setHorario(new java.sql.Time(timeFormat.parse(sessao.getString("horario")).getTime()));
 
                             atual.setHorarioString(sessao.getString("horario"));
@@ -160,15 +162,6 @@ public class SessaoDetails extends AppCompatActivity {
                         } else {
                             colocarIdAssento.setStatus(true);
                         }
-
-
-                        Log.e("numero do assento", " x = " + x + " y = " + y + " numAss= " + numAss + " maxAss = " + maxAss);
-                        // Log.e("4k", "= " + atual.isQuatroK());
-                        //Log.e("legendado", "= " + atual.isLegendado());
-                        // Log.e("lotada", "= " + atual.isLotada());
-                        //Log.e("imax", "= " + atual.isImax());
-                        //Log.e("idSessao", "= " + atual.getIdSessao());
-
 
                     }
                     setContentView(R.layout.activity_sessao_details);

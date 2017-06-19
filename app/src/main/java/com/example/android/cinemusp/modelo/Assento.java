@@ -1,5 +1,7 @@
 package com.example.android.cinemusp.modelo;
 
+
+
 public abstract class Assento {
 
     @Override
@@ -10,15 +12,10 @@ public abstract class Assento {
     private int idAssento;
     private int numero;
 
-    public int getIdAssentoSessao() {
-        return idAssentoSessao;
-    }
 
-    public void setIdAssentoSessao(int idAssentoSessao) {
-        this.idAssentoSessao = idAssentoSessao;
-    }
 
-    private int idAssentoSessao;
+
+
     private boolean status;
     private String imgL, imgR;
 

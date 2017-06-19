@@ -1,16 +1,6 @@
 package com.example.android.cinemusp.modelo;
 
-import com.example.android.cinemusp.modelo.Assento;
-import com.example.android.cinemusp.modelo.AssentoCadeirante;
-import com.example.android.cinemusp.modelo.AssentoCasal;
-import com.example.android.cinemusp.modelo.AssentoMovel;
-import com.example.android.cinemusp.modelo.AssentoObeso;
-import com.example.android.cinemusp.modelo.AssentoPadrao;
-import com.example.android.cinemusp.modelo.AssentoReclinavel;
 import com.example.android.cinemusp.persistencia.CinemaException;
-import com.example.android.cinemusp.persistencia.ControleSalas;
-
-import java.util.ArrayList;
 
 
 public class Sala {

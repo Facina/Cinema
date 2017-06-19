@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.IntentCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,29 +21,36 @@ import com.kosalgeek.genasync12.AsyncResponse;
 import com.kosalgeek.genasync12.PostResponseAsyncTask;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 
-import static android.R.attr.id;
+import static android.R.attr.port;
+
 
 /**
- * A simple {@link Fragment} subclass.
+ * @author Grupo 4 - Turma B POO
+ * SubClasse de {@link Fragment} da tela principal.
  */
 public class HomeFragment extends Fragment {
 
     String adress = "https://web-hosting-test.000webhostapp.com/pesquisa_proxima_sessao.php";
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
-
+    /**
+     * Cria um novo fragmento inflando o arquivo xml
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return rootView
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.home_page, container, false);
 
         final ImageView session = (ImageView) rootView.findViewById(R.id.home_session);
@@ -55,20 +60,18 @@ public class HomeFragment extends Fragment {
         final Filme movie = new Filme();
 
 
-        //Create a list of movies
+        //Efetuando pesquisa no banco de dados da proxima sessao não lotada da semana
         PostResponseAsyncTask task = new PostResponseAsyncTask(getActivity(), false, new AsyncResponse() {
 
             @Override
             public void processFinish(String s) {
 
                 try {
-                    Log.e("getData", "parsing adress = "+adress);
                     JSONObject js = new JSONObject(s);
                     JSONObject filme = null;
 
 
                         filme = js;
-                        Toast.makeText(getActivity(), "" + 0, Toast.LENGTH_LONG);
                         movie.setNome(filme.getString("nomeFilme"));
                         movie.setClassificacao(filme.getString("classificacao"));
                         movie.setSinopse(filme.getString("sinopse"));
@@ -82,8 +85,6 @@ public class HomeFragment extends Fragment {
 
                             movie.setIdFilme(filme.getInt("idFilme"));
                         } catch (Exception e) {
-                            Log.e("Filmefragmetn", "" + filme.getString("nomeFilme"));
-                            Log.e("FilmeFragment", "data exception" + filme.getString("dataEstreia") + " asd " + filme.getString("dataSaida"));
                             e.printStackTrace();
                         }
 
@@ -93,7 +94,6 @@ public class HomeFragment extends Fragment {
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 }
-                Log.e("getData", "parsed");
 
                     Picasso.with(context).load(movie.getImgLink()).into(session);
 
@@ -114,9 +114,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
-
-
                 Intent filmeIntent = new Intent(getActivity(), MovieDetails.class);
                 filmeIntent.putExtra("id", movie.getidFilme());
                 filmeIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -126,6 +123,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //Mandando e-mail para o suporte
         support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,9 +131,7 @@ public class HomeFragment extends Fragment {
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_EMAIL,new String[]{"support@cinemusp.com"});
                 intent.putExtra(Intent.EXTRA_TEXT,"Tell us what's on your mind !");
-
                 intent.setData(Uri.parse("mailto:"));
-
                 if(intent.resolveActivity(getActivity().getPackageManager()) != null)
                     startActivity(Intent.createChooser(intent, "Send Email"));
                 else

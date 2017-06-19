@@ -5,10 +5,9 @@ import java.text.SimpleDateFormat;
 import android.content.Intent;
 
 import android.os.Bundle;
-import android.os.StrictMode;
+
 import android.support.v4.app.Fragment;
 
-import android.support.v4.content.IntentCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -28,29 +27,28 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.util.ArrayList;
-import com.example.android.cinemusp.modelo.Filme;
-
 
 
 /**
- * {@link Fragment} that displays a list of number vocabulary words.
+ * Classe de fragmento que mostra os filmes em cartaz utilizando uma listView
+ * @author Grupo 4 - Turma B POO
  */
 public class FilmeFragment extends Fragment {
 
     View rootView;
-
     String adress = "https://web-hosting-test.000webhostapp.com/conn_cartaz.php";
-    final ArrayList<Filme> listaFilme = new ArrayList<Filme>();
 
 
-
-
+    /**
+     * Método padrão da classe fragment permite saber de qual fragmento se trata
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -61,17 +59,23 @@ public class FilmeFragment extends Fragment {
     }
 
 
-
-    public FilmeFragment() {
-
-    }
-
+    /**
+     * Método padrao da classe fragment
+     * @param outState
+     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("not null",1);
     }
 
+    /**
+     * Método que cria o fragmento inflando o arquivo xml e executando-o e permiter a reciclagem de fragmentos.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,40 +84,26 @@ public class FilmeFragment extends Fragment {
         rootView = inflater.inflate(R.layout.movie_list, container, false);
 
         final ArrayList<Filme> listaFilme = new ArrayList<Filme>();
-
-
-
-
-        Log.e("tamanho","size = "+listaFilme.size());
-        // MovieList movies = new MovieList();
-        // final ArrayList<Movie> list = movies.getMovies();
-
-       // StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
-
-
         final FilmeAdapter adapter = new FilmeAdapter(getActivity(), listaFilme);
-
         final ListView listView = (ListView) rootView.findViewById(R.id.list);
 
 
         listView.setAdapter(adapter);
 
-
-
-        //Create a list of movies
+        /**
+         * Método de conexao assincrona com o banco de dados importado da biblioteca de KosalGeek
+         */
         PostResponseAsyncTask task = new PostResponseAsyncTask(getActivity(), false, new AsyncResponse() {
 
             @Override
             public void processFinish(String s) {
 
                 try {
-                    Log.e("getData", "parsing");
                     JSONArray js = new JSONArray(s);
                     JSONObject filme = null;
 
                     for (int i = 0; i < js.length(); i++) {
                         filme = js.getJSONObject(i);
-                        Toast.makeText(getActivity(), "" + i, Toast.LENGTH_LONG);
                         Filme teste = new Filme();
                         teste.setNome(filme.getString("nomeFilme"));
                         teste.setClassificacao(filme.getString("classificacao"));
@@ -128,19 +118,16 @@ public class FilmeFragment extends Fragment {
 
                             teste.setIdFilme(filme.getInt("idFilme"));
                         } catch (Exception e) {
-                            Log.e("Filmefragmetn", "" + filme.getString("nomeFilme"));
-                            Log.e("FilmeFragment", "data exception" + filme.getString("dataEstreia") + " asd " + filme.getString("dataSaida"));
                             e.printStackTrace();
                         }
 
                         listaFilme.add(teste);
                     }
-                    Log.e("getData", "parsed");
                     listView.setAdapter(adapter);
 
 
                 } catch (Exception e) {
-                    //Toast.makeText(getContext(), "Filme não encontrado :(", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Nenhum filme foi encontrado :(", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
 
@@ -170,16 +157,9 @@ public class FilmeFragment extends Fragment {
             }
         });
 
-        Log.e("teste", "" + listaFilme.size());
-
-
-        // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
-        // adapter knows how to create list items for each item in the list.
-
-        // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
-        // {@link ListView} will display list items for each {@link Word} in the list.
-
-
+        /**
+         * Método de escuta se algum filme da lista foi clicado.
+         */
         final ArrayList<Filme> finalListaFilme = listaFilme;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

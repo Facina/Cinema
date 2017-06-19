@@ -2,13 +2,11 @@
 package com.example.android.cinemusp.android;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,8 +16,13 @@ import com.example.android.cinemusp.modelo.Sessao;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
+/**
+ * @author Grupo 4 - Turma B POO
+ *
+ * SubClasse de ArrayAdapter
+ * Transforma um arraylist de Sessao em um ExtendedHeightGridView
+ */
 
 public class SessaoAdapter extends ArrayAdapter<Sessao> {
 
@@ -32,14 +35,12 @@ public class SessaoAdapter extends ArrayAdapter<Sessao> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Check if an existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.sessao_item, parent, false);
         }
 
-        // Get the {@link Word} object located at this position in the list
         Sessao currentMovie = getItem(position);
 
         LinearLayout fundo = (LinearLayout) listItemView.findViewById(R.id.fundo_grid);
@@ -82,7 +83,6 @@ public class SessaoAdapter extends ArrayAdapter<Sessao> {
             }
 
 
-        LinearLayout gridRoot = (LinearLayout) listItemView.findViewById(R.id.grid_root_item);
 
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1.0f);
@@ -106,27 +106,22 @@ public class SessaoAdapter extends ArrayAdapter<Sessao> {
         }else {
             tresD.setText("2D");
         }
-        Log.e("horarop ", "é igual"+ horario.toString());
-        Log.e("filme time", "é igual "+ currentMovie.getHorario().toString());
         if(currentMovie.isLotada() ){
-            Log.e("ixi","sala lotada");
            fundo.setBackgroundResource(R.drawable.my_button);
 
         }
-        if (data.getDate() > currentMovie.getData().getDate() ||
+        if (data.getMonth() > currentMovie.getData().getMonth() || (data.getDate() > currentMovie.getData().getDate() ||
                 (data.getDate() == currentMovie.getData().getDate() &&
                 horario.getHours() > currentMovie.getHorario().getHours()) ||
                 (data.getDate() == currentMovie.getData().getDate() && horario.getHours() == currentMovie.getHorario().getHours()) &&
-                        (horario.getMinutes() > currentMovie.getHorario().getMinutes() )) {
+                        (horario.getMinutes() > currentMovie.getHorario().getMinutes() ))) {
                 fundo.setBackgroundResource(R.drawable.my_button);
-                Log.e("ixi", "sessao acabou ja");
             }
 
 
 
 
 
-        // the ListView.
         return listItemView;
     }
 }
