@@ -1,17 +1,26 @@
 package com.example.android.cinemusp.modelo;
 
+/**
+ * @author Grupo 4 - Turma B POO
+ * Subclasse Assento movel
+ */
 public class AssentoMovel extends Assento {
 
+    /** Construtor
+     *
+     */
     public AssentoMovel() {
         super();
-        this.setImgL("/Users/marcelosuckowdebarrosrodrigues/Downloads/USP/Cinema/src/icons/Edit 16.png");
-        this.setImgR(null);
+
     }
 
-    public int getEspacoOcupado() {
-        return 1;
-    }
 
+    /**
+     * retorna o  preoc do assento
+     * @param preco
+     * @param meia
+     * @return float preco
+     */
     public float getPreco(Preco preco, boolean meia) {
 
         if (meia == false) {
@@ -20,7 +29,11 @@ public class AssentoMovel extends Assento {
             return preco.getPrecoMovel() / 2;
         }
     }
-    
+
+    /**
+     * retorna o tiop do assento
+     * @return int 1-6
+     */
     public int getTipo() {
         return 6;
     }

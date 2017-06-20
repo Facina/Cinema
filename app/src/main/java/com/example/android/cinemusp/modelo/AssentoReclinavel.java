@@ -1,18 +1,25 @@
 package com.example.android.cinemusp.modelo;
 
+/**
+ * Subclasse AssentoReclinavel
+ * @author Grupo 4 - Turma B POO
+ */
 public class AssentoReclinavel extends Assento {
-	
+    /**
+     * Construtor
+     */
 	public AssentoReclinavel() {
 		super();
-                this.setImgL("/Users/marcelosuckowdebarrosrodrigues/Downloads/USP/Cinema/src/icons/Search16.png");
-                this.setImgR(null);
+
 	}
-	
-	public int getEspacoOcupado() {
-		return 1;
-	}
-        
-     public float getPreco(Preco preco, boolean meia) {
+
+    /**
+     * retorna o preco do assento
+     * @param preco
+     * @param meia
+     * @return float preco
+     */
+    public float getPreco(Preco preco, boolean meia) {
 
         if (meia == false) {
             return preco.getPrecoReclinavel();
@@ -20,7 +27,11 @@ public class AssentoReclinavel extends Assento {
             return preco.getPrecoReclinavel() / 2;
         }
     }
-     
+
+    /**
+     * retorna o tipo do assento
+     * @return
+     */
      public int getTipo() {
         return 2;
     }

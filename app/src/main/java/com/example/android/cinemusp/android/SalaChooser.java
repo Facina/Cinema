@@ -80,7 +80,7 @@ public class SalaChooser extends AppCompatActivity implements View.OnClickListen
 
 
         adress=adress+id;
-        Log.e("adress","is "+adress);
+        Log.v("adress","is "+adress);
 
 
         PostResponseAsyncTask task = new PostResponseAsyncTask(this, false,new AsyncResponse() {

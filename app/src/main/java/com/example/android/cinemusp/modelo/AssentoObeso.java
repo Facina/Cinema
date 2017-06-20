@@ -1,17 +1,23 @@
 package com.example.android.cinemusp.modelo;
 
+/**
+ * Subclasse AssentoObesso
+ */
 public class AssentoObeso extends Assento {
 
+    /**
+     * construtor
+     */
     public AssentoObeso() {
         super();
-        this.setImgL("/Users/marcelosuckowdebarrosrodrigues/Downloads/USP/Cinema/src/icons/filme_16.png");
-        this.setImgR("/Users/marcelosuckowdebarrosrodrigues/Downloads/USP/Cinema/src/icons/filme_24.png");
     }
 
-    public int getEspacoOcupado() {
-        return 2;
-    }
-
+    /**
+     * retorna o preco do assento
+     * @param preco
+     * @param meia
+     * @return float preco
+     */
     public float getPreco(Preco preco, boolean meia) {
 
         if (meia == false) {
@@ -20,7 +26,11 @@ public class AssentoObeso extends Assento {
             return preco.getPrecoObeso() / 2;
         }
     }
-    
+
+    /**
+     * retorna o tipo do assento
+     * @return
+     */
     public int getTipo() {
         return 5;
     }

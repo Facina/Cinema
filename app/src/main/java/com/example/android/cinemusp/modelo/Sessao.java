@@ -1,6 +1,6 @@
 package com.example.android.cinemusp.modelo;
 
-import com.example.android.cinemusp.persistencia.CinemaException;
+import com.example.android.cinemusp.Exceptions.CinemaException;
 
 
 import java.sql.Date;
@@ -10,7 +10,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
-
+/**
+ * Classe sessao
+ */
 public class Sessao {
     public String getHorarioString() {
         return horarioString;
@@ -38,21 +40,6 @@ public class Sessao {
         public Sessao(){
             
         }
-        
-	public Sessao(Filme filme, Sala sala,Date data ,Time horario, Preco precos, boolean tresD,boolean legendado, boolean imax, boolean quatroK) {
-		this.filme = filme;
-
-		this.sala = new Sala(sala.getNumeroSala(), sala.getNFileiras(), sala.getMaxAssentos(), sala.getMapa());
-		this.horario = horario;
-                this.data = data;
-		this.precos = precos;
-		this.tresD = tresD;
-                this.quatroK = quatroK;
-                this.imax = imax;
-                this.legendado = legendado;
-                lotada = false;
-                mapa = sala.getMapa();
-	}
 
     /**
      * @return the idSessao
@@ -68,19 +55,6 @@ public class Sessao {
         this.idSessao = idSessao;
     }
 
-    /**
-     * @return the filme
-     */
-    public Filme getFilme() {
-        return filme;
-    }
-
-    /**
-     * @param filme the filme to set
-     */
-    public void setFilme(Filme filme) {
-        this.filme = filme;
-    }
 
     /**
      * @return the sala
@@ -208,19 +182,6 @@ public class Sessao {
         this.lotada = lotada;
     }
 
-    /**
-     * @return the mapa
-     */
-    public Assento[][] getMapa() {
-        return mapa;
-    }
-
-    /**
-     * @param mapa the mapa to set
-     */
-    public void setMapa(Assento[][] mapa) {
-        this.mapa = mapa;
-    }
 
     public void setHorario(String horario) throws CinemaException {
         int horas,minutos;

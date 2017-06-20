@@ -1,8 +1,11 @@
 package com.example.android.cinemusp.modelo;
 
-import com.example.android.cinemusp.persistencia.CinemaException;
+import com.example.android.cinemusp.Exceptions.CinemaException;
 
-
+/**
+ * @author Grupo 4 - Turma B POO
+ * Classe sala
+ */
 public class Sala {
 
     private int idSala, numero;
@@ -12,12 +15,6 @@ public class Sala {
     public Sala() {
     }
 
-    public Sala(int numero, int nFileiras, int maxAssentos) {
-        this.nFileiras = nFileiras;
-        this.maxAssentos = maxAssentos;
-        mapa = new Assento[nFileiras][maxAssentos];
-        this.numero = numero;
-    }
 
     public Sala(int numero, int nFileiras, int maxAssentos, Assento[][] mapa) {
         this.nFileiras = nFileiras;
@@ -38,9 +35,7 @@ public class Sala {
         mapa = mapaAssentos;
     }
 
-    public Assento[][] getAssentos() {
-        return mapa;
-    }
+
 
     public void setAssento(int tipoAssento, int coordX, int coordY) {
         if (coordX - 1 >= 0 && mapa[coordX][coordY] instanceof AssentoObeso) {
@@ -80,17 +75,6 @@ public class Sala {
         }
     }
 
-    public void setNumerosAssentos() {
-        int i, j, k;
-        for (i = 0; i < nFileiras; i++) {
-            for (j = 0, k = 1; j < maxAssentos; j++) {
-                if (mapa[i][j] != null) {
-                    mapa[i][j].setNumero(k++);
-                }
-            }
-        }
-    }
-
     public Assento getAssento(int coordX, int coordY) {
         return mapa[coordX][coordY];
     }
@@ -127,22 +111,7 @@ public class Sala {
         this.maxAssentos = maxAssentos;
     }
 
-    public void setNumeroSala(String stringNumero) throws CinemaException {
-        int num;
 
-        if (stringNumero.equals("")) {
-            throw new CinemaException("Preencha o campo de número da sala");
-        }
-
-        try {
-            num = Integer.parseInt(stringNumero);
-        } catch (NumberFormatException e) {
-            throw new CinemaException("Número da sala inválido");
-        }
-
-        setNumeroSala(num);
-
-    }
 
     /**
      * @return the idSala

@@ -1,17 +1,24 @@
 package com.example.android.cinemusp.modelo;
 
+/**
+ * @author Grupo 4 - Turma B POO
+ * Subclasse assento de casal
+ */
 public class AssentoCasal extends Assento {
 
+    /**
+     * Construtor
+     */
     public AssentoCasal() {
         super();
-        this.setImgL("/Users/marcelosuckowdebarrosrodrigues/Downloads/USP/Cinema/src/icons/Delete16.png");
-        this.setImgR("/Users/marcelosuckowdebarrosrodrigues/Downloads/USP/Cinema/src/icons/Delete-icon.png");
     }
 
-    public int getEspacoOcupado() {
-        return 2;
-    }
-
+    /**
+     * retorna o preco do ingresso
+     * @param preco
+     * @param meia
+     * @return um float que é o preco do ingresso
+     */
     public float getPreco(Preco preco, boolean meia) {
 
         if (meia == false) {
@@ -21,6 +28,10 @@ public class AssentoCasal extends Assento {
         }
     }
 
+    /**
+     * retorna o tipo de assento
+     * @return int
+     */
     public int getTipo() {
         return 4;
     }

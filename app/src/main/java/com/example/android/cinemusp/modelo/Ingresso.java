@@ -1,5 +1,8 @@
 package com.example.android.cinemusp.modelo;
 
+/**
+ * Classe de ingresso
+ */
 public class Ingresso {
 
 
@@ -11,17 +14,11 @@ public class Ingresso {
 		return x;
 	}
 
-	public void setX(int x) {
-		this.x = x;
-	}
 
 	public int getY() {
 		return y;
 	}
 
-	public void setY(int y) {
-		this.y = y;
-	}
 
 	int x;
 	int y;
@@ -32,11 +29,15 @@ public class Ingresso {
 	public Assento getAssento() {
 		return assento;
 	}
-	
-	public Ingresso(Assento assento, Preco precos, boolean meia) {
-		this.assento = assento;
-		this.preco = assento.getPreco(precos, meia);
-	}
+
+	/**
+	 * Construtor
+	 * @param assento
+	 * @param precos
+	 * @param meia
+	 * @param x fileira do ingresso
+	 * @param y coluna do ingresso
+	 */
 	public Ingresso(Assento assento, Preco precos, boolean meia,int x,int y) {
 		this.assento = assento;
 		this.preco = assento.getPreco(precos, meia);

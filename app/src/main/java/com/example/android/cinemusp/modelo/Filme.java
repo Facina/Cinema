@@ -1,30 +1,17 @@
 package com.example.android.cinemusp.modelo;
 
 import android.app.Activity;
-import android.util.Log;
-import android.widget.ListView;
-
-import com.example.android.cinemusp.R;
-import com.example.android.cinemusp.android.FilmeAdapter;
-import com.kosalgeek.genasync12.PostResponseAsyncTask;
-import com.example.android.cinemusp.persistencia.CinemaException;
-import com.kosalgeek.genasync12.AsyncResponse;
 
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.example.android.cinemusp.Exceptions.CinemaException;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import static android.app.PendingIntent.getActivities;
-import static android.app.PendingIntent.getActivity;
 
 
 /**
- *
- * @author marcelosuckowdebarrosrodrigues
+ * @author Grupo 4 - Turma B POO
+ *Classe de filmes
  */
 public class Filme extends Activity{
 

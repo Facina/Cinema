@@ -1,17 +1,25 @@
 package com.example.android.cinemusp.modelo;
 
+/**
+ * @author Grupo 4 - Turma B POO
+ * Subclasse assento cadeirante
+ */
 public class AssentoCadeirante extends Assento {
 
+    /**
+     * construtor
+     */
     public AssentoCadeirante() {
         super();
-        this.setImgL("/Users/marcelosuckowdebarrosrodrigues/Downloads/USP/Cinema/src/icons/Add-icon.png");
-        this.setImgR(null);
     }
 
-    public int getEspacoOcupado() {
-        return 1;
-    }
 
+    /**
+     * metodo que retorna o preco do assento
+     * @param preco
+     * @param meia
+     * @return
+     */
     public float getPreco(Preco preco, boolean meia) {
 
         if (meia == false) {
@@ -21,6 +29,10 @@ public class AssentoCadeirante extends Assento {
         }
     }
 
+    /**
+     * retorna o tipo do assento
+     * @return
+     */
     public int getTipo() {
         return 3;
     }

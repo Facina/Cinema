@@ -1,8 +1,8 @@
-package com.example.android.cinemusp.persistencia;
+package com.example.android.cinemusp.Exceptions;
 
 /**
  *
- * @author marcelosuckowdebarrosrodrigues
+ * @author Grupo 4 - Turma B POO
  */
 public class CinemaException extends Exception {
 

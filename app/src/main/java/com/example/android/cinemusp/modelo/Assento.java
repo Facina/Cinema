@@ -1,7 +1,10 @@
 package com.example.android.cinemusp.modelo;
 
 
-
+/**
+ * @author Grupo 4 - Turma B POO
+ * Classe abstrada de assentos
+ */
 public abstract class Assento {
 
     @Override
@@ -10,34 +13,29 @@ public abstract class Assento {
     }
 
     private int idAssento;
-    private int numero;
-
-
-
 
 
     private boolean status;
-    private String imgL, imgR;
+
+    /**
+     * construtor de assento
+     */
 
     public Assento() {
         status = false;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public abstract int getEspacoOcupado();
-
+    /**
+     * Classe abstrata que retorna o tipo do assento de 1-6
+     * @return
+     */
     public abstract int getTipo();
 
     public abstract float getPreco(Preco preco, boolean meia);
 
     /**
+     * retorna se o assento ja foi comprada ou não
      * @return the status
      */
     public boolean getStatus() {
@@ -51,33 +49,6 @@ public abstract class Assento {
         this.status = status;
     }
 
-    /**
-     * @return the imgL
-     */
-    public String getImgL() {
-        return imgL;
-    }
-
-    /**
-     * @param imgL the imgL to set
-     */
-    public void setImgL(String imgL) {
-        this.imgL = imgL;
-    }
-
-    /**
-     * @return the imgR
-     */
-    public String getImgR() {
-        return imgR;
-    }
-
-    /**
-     * @param imgR the imgR to set
-     */
-    public void setImgR(String imgR) {
-        this.imgR = imgR;
-    }
 
     /**
      * @return the idAssento
@@ -93,41 +64,5 @@ public abstract class Assento {
         this.idAssento = idAssento;
     }
 
-    public static String gerarComandoSQLInserirAssento(Assento[][] mapaAssentos, int fileiras, int colunas,int idSala) {
-       String sql = "insert into tbAssento (numeroAssento,tipoAssento,idSala) values ";
-       int flag = 0;
-       
-        for (int i=0;i<fileiras;i++){
-            for(int j=0;j<colunas;j++){
-                if(mapaAssentos[i][j] != null){
-                    if(flag == 0){
-                        flag = 1;
-                    }else{
-                        sql = sql + " , ";
-                    }
-                    sql = sql + "( " + mapaAssentos[i][j].getNumero() + ", "+ mapaAssentos[i][j].getTipo() + ", " + idSala + ")";
-                }
-            }
-        }
-        return sql;   
-    }
-    
-    public static String gerarComandoSQLInserirAssentoSessao(Sala sala,int idSessao) {
-       String sql = "insert into tbAssentoSessao (statusAssento,idSessao,idAssento) values ";
-       int flag = 0;
-       
-        for (int i=0;i<sala.getNFileiras();i++){
-            for(int j=0;j<sala.getMaxAssentos();j++){
-                if(sala.getAssento(i, j) != null){
-                    if(flag == 0){
-                        flag = 1;
-                    }else{
-                        sql = sql + " , ";
-                    }
-                    sql = sql + "( false ," + idSessao + ", "+ sala.getAssento(i, j).getIdAssento()+ ")";
-                }
-            }
-        }
-        return sql;   
-    }
+
 }

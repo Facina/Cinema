@@ -12,11 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.cinemusp.R;
 import com.example.android.cinemusp.modelo.Filme;
-import com.example.android.cinemusp.persistencia.CinemaException;
+import com.example.android.cinemusp.Exceptions.CinemaException;
 import com.kosalgeek.genasync12.AsyncResponse;
 import com.kosalgeek.genasync12.PostResponseAsyncTask;
 import com.squareup.picasso.Picasso;
@@ -25,8 +24,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-
-import static android.R.attr.port;
 
 
 /**

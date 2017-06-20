@@ -1,7 +1,9 @@
 package com.example.android.cinemusp.modelo;
 
-import com.example.android.cinemusp.persistencia.CinemaException;
-
+/**
+ * @author grupo 4 - Turma B POO
+ * Classe de preco
+ */
 public class Preco {
 
     private int idPreco;
@@ -29,9 +31,6 @@ public class Preco {
     /**
      * @return the idPreco
      */
-    public int getIdPreco() {
-        return idPreco;
-    }
 
     /**
      * @param idPreco the idPreco to set
@@ -124,129 +123,6 @@ public class Preco {
         this.precoCadeirante = precoCadeirante;
     }
 
-    public void setPrecoPadrao(String valor, boolean enabled) throws CinemaException {
-        float preco;
 
-        if (valor.equals("")) {
-            if (enabled == false) {
-                this.precoPadrao = 0;
-                return;
-            } else {
-                throw new CinemaException("Preencha o preço do Assento Padrão");
-            }
-        }
 
-        try {
-            preco = Float.parseFloat(valor);
-        } catch (NumberFormatException ex) {
-            throw new CinemaException("Valor para preço de assento padrão inválido");
-        }
-
-        this.precoPadrao = preco;
-    }
-
-    public void setPrecoReclinavel(String valor, boolean enabled) throws CinemaException {
-        float preco;
-
-        if (valor.equals("")) {
-            if (enabled == false) {
-                this.precoReclinavel = 0;
-                return;
-            } else {
-                throw new CinemaException("Preencha o preço do Assento Reclinavel");
-            }
-        }
-
-        try {
-            preco = Float.parseFloat(valor);
-        } catch (NumberFormatException ex) {
-            throw new CinemaException("Valor para preço de assento reclinavel inválido");
-        }
-
-        this.precoReclinavel = preco;
-    }
-
-    public void setPrecoCadeirante(String valor, boolean enabled) throws CinemaException {
-        float preco;
-
-        if (valor.equals("")) {
-            if (enabled == false) {
-                this.precoCadeirante = 0;
-                return;
-            } else {
-                throw new CinemaException("Preencha o preço do Assento de Cadeirante");
-            }
-        }
-
-        try {
-            preco = Float.parseFloat(valor);
-        } catch (NumberFormatException ex) {
-            throw new CinemaException("Valor para preço de assento de cadeirante inválido");
-        }
-
-        this.precoCadeirante = preco;
-    }
-    
-    public void setPrecoCasal(String valor, boolean enabled) throws CinemaException {
-        float preco;
-
-        if (valor.equals("")) {
-            if (enabled == false) {
-                this.precoCasal = 0;
-                return;
-            } else {
-                throw new CinemaException("Preencha o preço do Assento de Casal");
-            }
-        }
-
-        try {
-            preco = Float.parseFloat(valor);
-        } catch (NumberFormatException ex) {
-            throw new CinemaException("Valor para preço de assento de casal inválido");
-        }
-
-        this.precoCasal = preco;
-    }
-    
-    public void setPrecoObeso(String valor, boolean enabled) throws CinemaException {
-        float preco;
-
-        if (valor.equals("")) {
-            if (enabled == false) {
-                this.precoObeso = 0;
-                return;
-            } else {
-                throw new CinemaException("Preencha o preço do Assento de Obeso");
-            }
-        }
-
-        try {
-            preco = Float.parseFloat(valor);
-        } catch (NumberFormatException ex) {
-            throw new CinemaException("Valor para preço de assento de obeso inválido");
-        }
-
-        this.precoObeso = preco;
-    }
-    
-    public void setPrecoMovel(String valor, boolean enabled) throws CinemaException {
-        float preco;
-
-        if (valor.equals("")) {
-            if (enabled == false) {
-                this.precoMovel = 0;
-                return;
-            } else {
-                throw new CinemaException("Preencha o preço do Assento Móvel");
-            }
-        }
-
-        try {
-            preco = Float.parseFloat(valor);
-        } catch (NumberFormatException ex) {
-            throw new CinemaException("Valor para preço de assento móvel inválido");
-        }
-
-        this.precoMovel = preco;
-    }
 }
